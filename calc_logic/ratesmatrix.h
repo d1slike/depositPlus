@@ -6,9 +6,8 @@ class Conditions
 {
     long int start_sum;
     /*0 - от 91 дня, 1 - от 181, 2 - от 395, 3 - от 546, 4 - от 732, 5 - от 1102*/
-    /*+0 - RUB +1 - USD* +2 - EUR*/
-    Array<double, 18> base_rates;//номинальные проценты
-    Array<double, 18> effective_rates;//проценты с капитализацией
+    Array<double, 6> base_rates;//номинальные проценты
+    Array<double, 6> effective_rates;//проценты с капитализацией
 public:
     Conditions(long int start_sum, const Array<double>& base_rates, const Array<double>& effective_rates)
     {
@@ -17,32 +16,31 @@ public:
         this->base_rates = base_rates;
     }
 
-    double getBaseRate(int day, Valute v);
-    double getEffectiveRate(int day, Valte v);
     long int getStartSum()
     {
         return start_sum;
     }
+
+    double operator[](int day, bool withCap);
 
 
 };
 
 class RatesMatrix
 {
-    Array<Conditions, 3> matrix;
+    Array<Conditions, 3> rub_rates;
+    Array<Conditions, 3> usd_rates;
+    Array<Conditions, 3> eur_rates;
 
 public:
-    RatesMatrix(const Array<Conditions>& matrix)
+    RatesMatrix(const Array<Conditions>& rub_rates, const Array<Conditions>& usd_rates, const Array<Conditions>& eur_rates)
     {
-        this->matrix = matrix;
+        this->rub_rates = rub_rates;
+        this->usd_rates = usd_rates;
+        this->eur_rates = eur_rates;
     }
 
-    const Conditions& operator[](int i)
-    {
-        if(i >= 0 && i < 3)
-            return matrix[i];
-        return matrix[0];
-    }
+    const Conditions& operator[](Valute v, long int sum);//TODO
 };
 
 
