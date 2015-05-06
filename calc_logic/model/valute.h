@@ -1,6 +1,3 @@
-#ifndef VALUTE_H
-#define VALUTE_H
-
 #pragma once
 
 enum Valute{
@@ -10,5 +7,4 @@ enum Valute{
     EUR = 2
 };
 
-#endif // VALUTE_H
 

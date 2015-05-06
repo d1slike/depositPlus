@@ -1,6 +1,3 @@
-#ifndef DATE
-#define DATE
-
 #pragma once
 
 class Date{
@@ -53,5 +50,4 @@ public:
     }
 
 };
-#endif // DATE
 

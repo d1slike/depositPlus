@@ -6,7 +6,7 @@
 //Шаблоны будут храниться рядом с программой в .dat
 class DepositTemplate{
     QString name; //название вклада
-    QString description; //описание вклада в <html>
+    QString info; //описание вклада в <html>
     RatesMatrix rates; //матрица ставок
     bool can_capitalize; //капитализация процентов
     bool can_add; //можно добавлять
@@ -38,6 +38,11 @@ public:
         this->rates = rates;
     }
 
+    void setInfo(const QString &info)
+    {
+        this->info = info;
+    }
+
     bool isCanCapitalize()
     {
         return can_capitalize;
@@ -61,6 +66,11 @@ public:
     const RatesMatrix& getRates()
     {
         return rates;
+    }
+
+    const QString& getInfo()
+    {
+        return info;
     }
 
 };

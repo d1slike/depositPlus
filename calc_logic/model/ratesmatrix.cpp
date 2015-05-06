@@ -6,7 +6,6 @@ double RateSet::get(int day, bool isCap)
     for(int i = 0; i < 6; i++)
         if(section_day[i].contain(day))
             return isCap ? effective_rates[i] : base_rates[i];
-
 }
 
 const RateSet& RatesMatrix::operator[](const Money& m)//TODO обработать минимальные суммы, иначе получим краш

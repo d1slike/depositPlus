@@ -1,40 +1,8 @@
 #include "utils/array.h"
+#include "utils/section.h"
 #include "valute.h"
 #include "money.h"
 #pragma once
-
-class Section
-{
-    long int min;
-    long int max;
-
-public:
-    Section()
-    {
-        min = max = -1;
-    }
-
-    Section(long int min, long int max)
-    {
-       this->min = min;
-       this->max = max;
-    }
-
-    bool contain(long int value)
-    {
-        return value >=min && value <=max;
-    }
-
-    bool operator>=(long int value)
-    {
-        return value >= min;
-    }
-
-    bool operator<=(long int value)
-    {
-        return value <= max;
-    }
-};
 
 class RateSet
 {
@@ -43,6 +11,7 @@ class RateSet
     Array<double, 6> base_rates;//номинальные проценты
     Array<double, 6> effective_rates;//проценты с капитализацией
 public:
+    RateSet(){}
     RateSet(long int start_sum, const Array<double, 6>& base_rates, const Array<double, 6>& effective_rates, const Array<Section, 6>& section_day)
     {
         this->start_sum = start_sum;
