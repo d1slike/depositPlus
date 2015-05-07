@@ -12,10 +12,12 @@ TARGET = DepositPlus
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        depositplus.cpp
+SOURCES += main.cpp \
+    ui_logic/mainform.cpp
 
-HEADERS  += depositplus.h \
-    utils/array.h
+HEADERS  += \
+    utils/array.h \
+    ui_logic/mainform.h
 
-FORMS    += depositplus.ui
+FORMS    += \
+    ui_logic/mainform.ui
