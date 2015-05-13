@@ -6,6 +6,7 @@ MainForm::MainForm(QWidget *parent) :
     ui(new Ui::MainForm)
 {
     ui->setupUi(this);
+   // ui->fullMenu->setEnabled(false);
 }
 
 MainForm::~MainForm()

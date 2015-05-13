@@ -17,7 +17,9 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     utils/array.h \
-    ui_logic/mainform.h
+    ui_logic/mainform.h \
+    calc_logic/deposit.h \
+    calc_logic/date.h
 
 FORMS    += \
     ui_logic/mainform.ui
