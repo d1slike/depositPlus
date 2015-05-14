@@ -1,13 +1,11 @@
-#ifndef ARRAY
-#define ARRAY
 /*Безопасный массив*/
 /*В случае выхода за границу, возвращает 0-ой элемент массива*/
-template <class T=int, int SIZE = 100> class Array
+#pragma once
+
+template <class T, int SIZE = 100> class Array
 {
     T array[SIZE];
 public:
-    Array()
-    {}
     T& operator[](int i)
     {
         if(i >= 0 && i < SIZE)
@@ -17,5 +15,4 @@ public:
 
 };
 
-#endif // ARRAY
 

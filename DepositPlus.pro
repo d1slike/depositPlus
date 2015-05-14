@@ -24,7 +24,8 @@ HEADERS  += \
     calc_logic/deposittemplate.h \
     calc_logic/ratesmatrix.h \
     calc_logic/deposit.h \
-    calc_logic/depositholder.h
+    calc_logic/depositholder.h \
+    calc_logic/money.h
 
 FORMS    += \
     ui_logic/mainform.ui

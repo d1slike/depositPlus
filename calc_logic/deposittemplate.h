@@ -6,11 +6,11 @@
 //Шаблоны будут храниться рядом с программой в .dat
 class DepositTemplate{
     QString name; //название вклада
+    QString description; //описание вклада в <html>
     RatesMatrix rates; //матрица ставок
     bool can_capitalize; //капитализация процентов
     bool can_add; //можно добавлять
     bool can_remove; //можно досрочно снимать
-
 
 public:
     void setCanCapitalize(bool can)

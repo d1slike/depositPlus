@@ -1,21 +1,36 @@
 #include "ratesmatrix.h"
 
 
-double Conditions::operator[](int day, bool isCap)
+double RateSet::get(int day, bool isCap)
 {
-    if(day >=91 && day <= 180)
-        return !isCap ? base_rates[0] : effective_rates[0];
-    else if(day >= 181 && day <= 394)
-        return !isCap ? base_rates[1] : effective_rates[1];
-    else if(day >= 395 && day <= 545)
-        return !isCap ? base_rates[2] : effective_rates[2];
-    else if(day >= 546 && day <= 731)
-        return !isCap ? base_rates[3] : effective_rates[3];
-    else if(day >= 732 && day <= 1101)
-        return !isCap ? base_rates[4] : effective_rates[4];
-    else if(day >= 1102)
-        return !isCap ? base_rates[5] : effective_rates[5];
+    for(int i = 0; i < 6; i++)
+        if(section_day[i].contain(day))
+            return isCap ? effective_rates[i] : base_rates[i];
 
-    return 0.;
+}
 
+const RateSet& RatesMatrix::operator[](const Money& m)//TODO обработать минимальные суммы, иначе получим краш
+{
+    switch(m.getValute())
+    {
+        case RUB:
+                for(int i = 0; i < 3; i++)
+                        if(rub_rates[i].getStartSum() <= m.getValue())
+                            return rub_rates[i];
+            break;
+        case USD:
+                for(int i = 0; i < 3; i++)
+                        if(usd_rates[i].getStartSum() <= m.getValue())
+                            return usd_rates[i];
+            break;
+        case EUR:
+                for(int i = 0; i < 3; i++)
+                        if(eur_rates[i].getStartSum() <= m.getValue())
+                            return eur_rates[i];
+            break;
+
+
+    }
+
+    return rub_rates[0]; //TODO избавиться от этого
 }
