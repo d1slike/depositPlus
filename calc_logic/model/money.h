@@ -58,7 +58,55 @@ public:
         return *this;
     }
 
+    bool operator==(long int value)
+    {
+        return this->value == value;
+    }
 
+    bool operator==(const Money& m)
+    {
+        return value == m.getValue();
+    }
+
+    bool operator>(long int value)
+    {
+        return this-value > value;
+    }
+
+    bool operator>(const Money& m)
+    {
+        return value > m.getValue();
+    }
+
+    bool operator>=(long int value)
+    {
+        return *this > value || *this == value;
+    }
+
+    bool operator>=(const Money &m)
+    {
+        return *this > m || *this == m;
+    }
+
+    bool operator<(long int value)
+    {
+        return !(*this > value);
+    }
+
+    bool operator<(const Money &m)
+    {
+        return !(*this > m);
+    }
+
+    bool operator<=(long int value)
+    {
+        return *this < value || *this == value;
+    }
+
+    bool operator<=(const Money &m)
+    {
+        return *this < m || *this == m;
+    }
 
     //TODO реализовать другие операторы по необходимоти
 };

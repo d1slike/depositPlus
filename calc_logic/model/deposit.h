@@ -11,9 +11,11 @@ class Deposit
     Money sum;
     int day_count;
 public:
-    Deposit(const QString& name, Valute v, int day_count, long int start_summ)
+    Deposit(const Money& sum, int day_count, DepositTemplate templ)
     {
-
+        this->day_count = day_count;
+        this->sum = sum;
+        this->templ = templ;
     }
 };
 

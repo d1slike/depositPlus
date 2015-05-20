@@ -25,7 +25,8 @@ public:
         return start_sum;
     }
 
-    double get(int day, bool withCap);
+    void get(int day, bool withCap, double* rates, Section * sections);
+    void get(int day, bool withCap);
 
 
 };
@@ -37,7 +38,7 @@ class RatesMatrix
     Array<RateSet, 3> eur_rates;
 
 public:
-    RatesMatrix(Array<RateSet, 3> &rub_rates)
+    RatesMatrix(Array<RateSet, 3> &rub_rates, Array<RateSet, 3> &usd_rates, Array<RateSet, 3> &eur_rates )
     {
         this->rub_rates = rub_rates;
         this->usd_rates = usd_rates;

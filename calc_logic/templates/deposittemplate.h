@@ -1,5 +1,5 @@
 #include <QString>
-#include "ratesmatrix.h"
+#include "../model/ratesmatrix.h"
 
 
 //Шаблон для для депозита
@@ -11,6 +11,8 @@ class DepositTemplate{
     bool can_capitalize; //капитализация процентов
     bool can_add; //можно добавлять
     bool can_remove; //можно досрочно снимать
+    bool dynam_rates;//градация по ставкам
+
 
 public:
     void setCanCapitalize(bool can)
@@ -43,6 +45,11 @@ public:
         this->info = info;
     }
 
+    void setDynamRates(bool dynam_rates)
+    {
+        this->dynam_rates = dynam_rates;
+    }
+
     bool isCanCapitalize()
     {
         return can_capitalize;
@@ -56,6 +63,11 @@ public:
     bool isCanRemove()
     {
         return can_remove;
+    }
+
+    bool isDynamRates()
+    {
+        return dynam_rates;
     }
 
     const QString& getName()

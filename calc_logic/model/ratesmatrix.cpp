@@ -1,6 +1,18 @@
 #include "ratesmatrix.h"
 
 
+void RateSet::get(int day, bool isCap, double *rates, Section *sections)
+{
+    if(rates == 0 || section == 0)
+        return;
+    for(int i = 0; i < 6; i++)
+        if(section_day[i]<=(day))
+        {
+            sections[i] = section_day[i];
+            rates[i] = isCap ? effective_rates[i] : base_rates[i];
+        }
+}
+
 double RateSet::get(int day, bool isCap)
 {
     for(int i = 0; i < 6; i++)
