@@ -70,7 +70,7 @@ public:
 
     bool operator>(long int value)
     {
-        return this-value > value;
+        return this->value > value;
     }
 
     bool operator>(const Money& m)

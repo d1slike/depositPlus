@@ -26,7 +26,7 @@ public:
     }
 
     void get(int day, bool withCap, double* rates, Section * sections);
-    void get(int day, bool withCap);
+    double get(int day, bool withCap);
 
 
 };

@@ -3,7 +3,7 @@
 
 void RateSet::get(int day, bool isCap, double *rates, Section *sections)
 {
-    if(rates == 0 || section == 0)
+    if(rates == 0 || sections == 0)
         return;
     for(int i = 0; i < 6; i++)
         if(section_day[i]<=(day))
