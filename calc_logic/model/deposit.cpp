@@ -1,12 +1,12 @@
 #include "deposit.h"
 Money Deposit::Calc()// в if добавить ништяков для обработки всего периодов и тд
 {
-double rates;
-rates=templ.getRates()[sum].get(day_count,templ.isCanCapitalize());
-if(templ.isCanCapitalize())
-    return CalcCap(rates,sum,day_count);
-else
-    return CalcNoCap(rates,sum,day_count);
+    double rates;
+    rates=templ.getRates()[sum].get(day_count,templ.isCanCapitalize());
+    if(templ.isCanCapitalize())
+        return CalcCap(rates,sum,day_count);
+    else
+        return CalcNoCap(rates,sum,day_count);
 }
 
 Money Deposit::CalcCap(double rates,Money startsum,int day)

@@ -1,9 +1,8 @@
 #pragma once
 
 class Date{
-    /*SY - обычный год, LY - високосный*/
-    static int DAYS_IN_MOUTH_SY[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
-    static int DAYS_IN_MOUTH_LY[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    static int DAYS_IN_MOUTH[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
+    static int DAYS_IN_MOUTH_LEAP[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     int day;
     int month;
@@ -21,6 +20,7 @@ public:
     bool operator<(const Date &date);
     bool operator>=(const Date &date);
     bool operator<=(const Date &date);
+    Date& operator+(int add_days);
     bool isLeapYear();
     int getDaysToNewYear();
 
@@ -53,8 +53,6 @@ public:
     {
         year = _year;
     }
-
-
 
 };
 
