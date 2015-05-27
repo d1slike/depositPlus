@@ -38,6 +38,7 @@ class RatesMatrix
     Array<RateSet, 3> eur_rates;
 
 public:
+    RatesMatrix(){}
     RatesMatrix(Array<RateSet, 3> &rub_rates, Array<RateSet, 3> &usd_rates, Array<RateSet, 3> &eur_rates )
     {
         this->rub_rates = rub_rates;
