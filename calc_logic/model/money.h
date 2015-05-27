@@ -6,12 +6,16 @@ class Money
     Valute valute;
     long int value;
 public:
+    Money(){}
+    Money(long int value)
+    {
+        this->value = value;
+    }
     Money(Valute valute, long int value)
     {
         this->valute = valute;
         this->value = value;
     }
-
     Valute getValute() const
     {
         return valute;
@@ -83,7 +87,7 @@ public:
         return *this > value || *this == value;
     }
 
-    bool operator>=(const Money &m)
+    bool operator>=(const Money& m)
     {
         return *this > m || *this == m;
     }
@@ -93,7 +97,7 @@ public:
         return !(*this > value);
     }
 
-    bool operator<(const Money &m)
+    bool operator<(const Money& m)
     {
         return !(*this > m);
     }
@@ -103,7 +107,7 @@ public:
         return *this < value || *this == value;
     }
 
-    bool operator<=(const Money &m)
+    bool operator<=(const Money& m)
     {
         return *this < m || *this == m;
     }
