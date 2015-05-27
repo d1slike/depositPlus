@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp \
     ui_logic/mainform.cpp \
     calc_logic/model/ratesmatrix.cpp \
-    calc_logic/model/date.cpp
+    calc_logic/model/date.cpp \
+    calc_logic/model/deposit.cpp
 
 HEADERS  += \
     utils/array.h \
