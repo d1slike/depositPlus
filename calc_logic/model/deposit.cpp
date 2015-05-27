@@ -3,7 +3,7 @@ Money Deposit::Calc()// в if добавить ништяков для обра�
 {
 double rates;
 rates=templ.getRates()[sum].get(day_count,templ.isCanCapitalize());
-if(templ.can_capitalize())
+if(templ.isCanCapitalize())
     return CalcCap(rates,sum,day_count);
 else
     return CalcNoCap(rates,sum,day_count);
