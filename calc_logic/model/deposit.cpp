@@ -2,9 +2,10 @@
 Money Deposit::Calc() // в if добавить ништяков для обработки всего периодов и тд
 {
     double rates;
-    RatesMatrix r=templ.getRates();
-    rates=r[sum].get(day_count,templ.isCanCapitalize());//дает ошибку поправь я уже заманался
-    //rates=templ.getRates[sum].get(day_count,templ.isCanCapitalize());
+    RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
+    RatesMatrix r=templ.getRates();                 //
+    R=r[sum];                                       //
+    rates=R.get(day_count,templ.isCanCapitalize()); //
     if(templ.isCanCapitalize())
         return CalcCap(rates,sum,day_count);
     else
