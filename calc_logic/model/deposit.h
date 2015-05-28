@@ -11,6 +11,7 @@ class Deposit
     Money sum;
     Date date;
     int day_count;
+    bool capitalize;//установлен ли фалг капи
 public:
     Deposit(Money sum, int day_count, DepositTemplate templ,Date date)
     {
@@ -20,7 +21,7 @@ public:
         this->date=date;
     }
     Money Calc();
-    Money CalcCap(double,Money ,int);
-    Money CalcNoCap(double,Money ,int);
+    Money CalcCap(double, long int ,int);
+    Money CalcNoCap(double, long int ,int);
 };
 

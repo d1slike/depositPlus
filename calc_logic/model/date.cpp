@@ -1,5 +1,7 @@
 #include "date.h"
 
+using namespace days;
+
 Date::Date(int _day, int _month, int _year)
 {
     day = _day;

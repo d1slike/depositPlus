@@ -70,17 +70,17 @@ public:
         return dynam_rates;
     }
 
-    const QString& getName()
+    QString& getName()
     {
         return name;
     }
 
-    const RatesMatrix& getRates()
+    RatesMatrix& getRates()
     {
         return rates;
     }
 
-    const QString& getInfo()
+    QString& getInfo()
     {
         return info;
     }

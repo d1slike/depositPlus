@@ -7,10 +7,13 @@
 class RateSet
 {
     long int start_sum;
+
+public:
+    /*Для большей эффективности*/
     Array<Section, 6> section_day;//границы по дням
     Array<double, 6> base_rates;//номинальные проценты
     Array<double, 6> effective_rates;//проценты с капитализацией
-public:
+
     RateSet(){}
     RateSet(long int start_sum, const Array<double, 6>& base_rates, const Array<double, 6>& effective_rates, const Array<Section, 6>& section_day)
     {
@@ -20,15 +23,10 @@ public:
         this->section_day = section_day;
     }
 
-    long int getStartSum()
+    long int getSum()
     {
         return start_sum;
     }
-
-    void get(int day, bool withCap, double* rates, Section * sections);
-    double get(int day, bool withCap);
-
-
 };
 
 class RatesMatrix
@@ -37,6 +35,7 @@ class RatesMatrix
     Array<RateSet, 3> usd_rates;
     Array<RateSet, 3> eur_rates;
 
+    RateSet& getSuitRates(const Money& m);
 public:
     RatesMatrix(){}
     RatesMatrix(Array<RateSet, 3> &rub_rates, Array<RateSet, 3> &usd_rates, Array<RateSet, 3> &eur_rates )
@@ -45,8 +44,9 @@ public:
         this->usd_rates = usd_rates;
         this->eur_rates = eur_rates;
     }
-
-    const RateSet& operator[](const Money& m);
+    long int getStartSum(const Money& m);
+    void get(const Money& m, int day, bool withCap, double* rates, Section * sections);
+    double get(const Money& m, int day, bool withCap);
 };
 
 

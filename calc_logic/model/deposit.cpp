@@ -1,20 +1,20 @@
 #include "deposit.h"
 Money Deposit::Calc() // в if добавить ништяков для обработки всего периодов и тд
 {
-    double rates;
-    RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
+    double rates = this->templ.getRates().get(sum, day_count, capitalize);
+    /*RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
     RatesMatrix r=templ.getRates();                 //
     R=r[sum];                                       //
-    rates=R.get(day_count,templ.isCanCapitalize()); //
+    rates=R.get(day_count,templ.isCanCapitalize()); /*/
     if(templ.isCanCapitalize())
-        return CalcCap(rates,sum,day_count);
+        return CalcCap(rates,sum.getValue(),day_count);
     else
-        return CalcNoCap(rates,sum,day_count);
+        return CalcNoCap(rates,sum.getValue(),day_count);
 }
 
-Money Deposit::CalcCap(double rates,Money startsum,int day)
+Money Deposit::CalcCap(double rates, long int  startsum,int day)
 {
-    Money value=0;
+    long int value=0;
     int day_to_ny=date.getDaysToNewYear();
     double D_i=0,persent_coef;
     while(day)
@@ -39,11 +39,11 @@ Money Deposit::CalcCap(double rates,Money startsum,int day)
         }
 
     }
-    return value;
+    return Money(ABSTRACT, value);
 }
-Money Deposit::CalcNoCap(double rates,Money startsum,int day)
+Money Deposit::CalcNoCap(double rates, long int  startsum, int day)
 {
-    Money value=0;
+    long int value=0;
     int day_to_ny=date.getDaysToNewYear();
     while(day)
     {
@@ -63,7 +63,7 @@ Money Deposit::CalcNoCap(double rates,Money startsum,int day)
         }
 
     }
-    return value;
+    return Money(ABSTRACT, value);
 }
 
 
