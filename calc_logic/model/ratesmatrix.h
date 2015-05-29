@@ -6,7 +6,7 @@
 
 class RateSet
 {
-    long int start_sum;
+    m_long start_sum;
 
 public:
     /*Для большей эффективности*/
@@ -15,7 +15,7 @@ public:
     Array<double, 6> effective_rates;//проценты с капитализацией
 
     RateSet(){}
-    RateSet(long int start_sum, const Array<double, 6>& base_rates, const Array<double, 6>& effective_rates, const Array<Section, 6>& section_day)
+    RateSet(m_long start_sum, const Array<double, 6>& base_rates, const Array<double, 6>& effective_rates, const Array<Section, 6>& section_day)
     {
         this->start_sum = start_sum;
         this->effective_rates = effective_rates;
@@ -23,7 +23,7 @@ public:
         this->section_day = section_day;
     }
 
-    long int getSum()
+    m_long getSum()
     {
         return start_sum;
     }
@@ -44,7 +44,7 @@ public:
         this->usd_rates = usd_rates;
         this->eur_rates = eur_rates;
     }
-    long int getStartSum(const Money& m);
+    m_long getStartSum(const Money& m);
     void get(const Money& m, int day, bool withCap, double* rates, Section * sections);
     double get(const Money& m, int day, bool withCap);
 };

@@ -23,7 +23,7 @@ double RatesMatrix::get(const Money& m, int day, bool isCap)
     return 0;
 }
 
-long int RatesMatrix::getStartSum(const Money &m)
+m_long RatesMatrix::getStartSum(const Money &m)
 {
     RateSet tmp = getSuitRates(m);
     return tmp.getSum();

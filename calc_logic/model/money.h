@@ -1,17 +1,19 @@
 #include "valute.h"
 #pragma once
 
+typedef unsigned long int m_long;
+
 class Money
 {
     Valute valute;
-    long int value;
+    m_long value;
 public:
     Money(){}
-    Money(long int value)
+    Money(m_long value)
     {
         this->value = value;
     }
-    Money(Valute valute, long int value)
+    Money(Valute valute, m_long value)
     {
         this->valute = valute;
         this->value = value;
@@ -21,48 +23,48 @@ public:
         return valute;
     }
 
-    long int getValue() const
+    m_long getValue() const
     {
         return value;
     }
 
-    Money& operator=(long int value)
+    Money& operator=(m_long value)
     {
         this->value = value;
         return *this;
     }
 
-    Money& operator+(long int value)
+    Money& operator+(m_long value)
     {
         this->value+=value;
         return *this;
     }
 
-    Money& operator-(long int value)
+    Money& operator-(m_long value)
     {
         this->value-=value;
         return *this;
     }
 
-    Money& operator*(long int value)
+    Money& operator*(m_long value)
     {
         this->value*=value;
         return *this;
     }
 
-    Money& operator/(long int value)
+    Money& operator/(m_long value)
     {
         this->value/=value;
         return *this;
     }
 
-    Money& operator%(long int value)
+    Money& operator%(m_long value)
     {
         this->value%=value;
         return *this;
     }
 
-    bool operator==(long int value)
+    bool operator==(m_long value)
     {
         return this->value == value;
     }
@@ -72,7 +74,7 @@ public:
         return value == m.getValue();
     }
 
-    bool operator>(long int value)
+    bool operator>(m_long value)
     {
         return this->value > value;
     }
@@ -82,7 +84,7 @@ public:
         return value > m.getValue();
     }
 
-    bool operator>=(long int value)
+    bool operator>=(m_long value)
     {
         return *this > value || *this == value;
     }
@@ -92,7 +94,7 @@ public:
         return *this > m || *this == m;
     }
 
-    bool operator<(long int value)
+    bool operator<(m_long value)
     {
         return !(*this > value);
     }
@@ -102,7 +104,7 @@ public:
         return !(*this > m);
     }
 
-    bool operator<=(long int value)
+    bool operator<=(m_long value)
     {
         return *this < value || *this == value;
     }

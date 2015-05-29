@@ -1,7 +1,7 @@
 #include "deposit.h"
 Money Deposit::Calc() // в if добавить ништяков для обработки всего периодов и тд
 {
-    double rates = this->templ.getRates().get(sum, day_count, capitalize);
+    double rates = templ.getRates().get(sum, day_count, capitalize);
     /*RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
     RatesMatrix r=templ.getRates();                 //
     R=r[sum];                                       //
@@ -12,9 +12,9 @@ Money Deposit::Calc() // в if добавить ништяков для обра
         return CalcNoCap(rates,sum.getValue(),day_count);
 }
 
-Money Deposit::CalcCap(double rates, long int  startsum,int day)
+Money Deposit::CalcCap(double rates, m_long startsum,int day)
 {
-    long int value=0;
+    m_long value=0;
     int day_to_ny=date.getDaysToNewYear();
     double D_i=0,persent_coef;
     while(day)
@@ -41,9 +41,9 @@ Money Deposit::CalcCap(double rates, long int  startsum,int day)
     }
     return Money(ABSTRACT, value);
 }
-Money Deposit::CalcNoCap(double rates, long int  startsum, int day)
+Money Deposit::CalcNoCap(double rates, m_long  startsum, int day)
 {
-    long int value=0;
+    m_long value=0;
     int day_to_ny=date.getDaysToNewYear();
     while(day)
     {
