@@ -4,18 +4,20 @@
 #include "money.h"
 #pragma once
 
+#define R_SIZE 6
+
 class RateSet
 {
     m_long start_sum;
 
 public:
     /*Для большей эффективности*/
-    Array<Section, 6> section_day;//границы по дням
-    Array<double, 6> base_rates;//номинальные проценты
-    Array<double, 6> effective_rates;//проценты с капитализацией
+    Array<int, R_SIZE> section_day;//границы по дням
+    Array<double, R_SIZE> base_rates;//номинальные проценты
+    Array<double, R_SIZE> effective_rates;//проценты с капитализацией
 
     RateSet(){}
-    RateSet(m_long start_sum, const Array<double, 6>& base_rates, const Array<double, 6>& effective_rates, const Array<Section, 6>& section_day)
+    RateSet(m_long start_sum, const Array<double, R_SIZE>& base_rates, const Array<double, R_SIZE>& effective_rates, const Array<int, R_SIZE>& section_day)
     {
         this->start_sum = start_sum;
         this->effective_rates = effective_rates;
@@ -45,7 +47,7 @@ public:
         this->eur_rates = eur_rates;
     }
     m_long getStartSum(const Money& m);
-    void get(const Money& m, int day, bool withCap, double* rates, Section * sections);
+    void get(const Money& m, int day, bool withCap, double* rates, int* startDays);
     double get(const Money& m, int day, bool withCap);
 };
 

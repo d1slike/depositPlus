@@ -1,15 +1,15 @@
 #include "ratesmatrix.h"
 
 
-void RatesMatrix::get(const Money& m, int day, bool isCap, double *rates, Section *sections)
+void RatesMatrix::get(const Money& m, int day, bool isCap, double *rates, int *startDays)
 {
     if(rates == 0 || sections == 0)
         return;
     RateSet tmp = getSuitRates(m);
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < R_SIZE; i++)
         if(tmp.section_day[i]<=(day))
         {
-            sections[i] = tmp.section_day[i];
+            startDays[i] = tmp.section_day[i];
             rates[i] = isCap ? tmp.effective_rates[i] : tmp.base_rates[i];
         }
 }
@@ -17,7 +17,7 @@ void RatesMatrix::get(const Money& m, int day, bool isCap, double *rates, Sectio
 double RatesMatrix::get(const Money& m, int day, bool isCap)
 {
     RateSet tmp = getSuitRates(m);
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < R_SIZE; i++)
         if(tmp.section_day[i].contain(day))
             return isCap ? tmp.effective_rates[i] : tmp.base_rates[i];
     return 0;

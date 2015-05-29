@@ -6,7 +6,7 @@ Money Deposit::Calc() // в if добавить ништяков для обра
     RatesMatrix r=templ.getRates();                 //
     R=r[sum];                                       //
     rates=R.get(day_count,templ.isCanCapitalize()); /*/
-    if(templ.isCanCapitalize())
+    if(capitalize)
         return CalcCap(rates,sum.getValue(),day_count);
     else
         return CalcNoCap(rates,sum.getValue(),day_count);

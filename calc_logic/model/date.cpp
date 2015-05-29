@@ -67,7 +67,6 @@ Date& Date::operator+(int add_days)
 
         add_days--;
     }
-
     return *this;
 }
 
