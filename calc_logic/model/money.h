@@ -1,7 +1,7 @@
 #include "valute.h"
 #pragma once
 
-typedef unsigned long int m_long;
+typedef unsigned long int m_long; //должно хватить
 
 class Money
 {

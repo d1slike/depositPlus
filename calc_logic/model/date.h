@@ -1,8 +1,8 @@
 #pragma once
 
 namespace days{
-    static int DAYS_IN_MOUTH[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
-    static int DAYS_IN_MOUTH_LEAP[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    const static int DAYS_IN_MOUTH[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
+    const static int DAYS_IN_MOUTH_LEAP[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 }
 
 class Date{

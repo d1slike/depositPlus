@@ -50,7 +50,7 @@ bool Date::isLeapYear()
 
 Date& Date::operator+(int add_days)
 {
-    while(add_days)
+    while(add_days) //TODO слишком медленно, подумать над оптимизацией
     {
         if(day == 31 && month == 12)
         {

@@ -6,7 +6,7 @@ void RatesMatrix::get(const Money& m, int day, bool isCap, double *rates, int *s
     if(rates == 0 || startDays == 0)
         return;
     RateSet tmp = getSuitRates(m);
-    for(int i = 0; i < R_SIZE; i++)
+    for(int i = 0; i < tmp.getSectionCount(); i++)
         if(tmp.section_day[i]<=day)
         {
             startDays[i] = tmp.section_day[i];
@@ -17,7 +17,7 @@ void RatesMatrix::get(const Money& m, int day, bool isCap, double *rates, int *s
 double RatesMatrix::get(const Money& m, int day, bool isCap)
 {
     RateSet tmp = getSuitRates(m);
-    for(int i = 5; i >= 0; i++)
+    for(int i = tmp.getSectionCount() - 1; i >= 0; i++)
         if(tmp.section_day[i] <= day) //TODO проверить
             return isCap ? tmp.effective_rates[i] : tmp.base_rates[i];
     return 0;

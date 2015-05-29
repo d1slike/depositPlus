@@ -15,11 +15,12 @@ public:
     Array<int, R_SIZE> section_day;//границы по дням
     Array<double, R_SIZE> base_rates;//номинальные проценты
     Array<double, R_SIZE> effective_rates;//проценты с капитализацией
-
+    int section_count;
     RateSet(){}
-    RateSet(m_long start_sum, const Array<double, R_SIZE>& base_rates, const Array<double, R_SIZE>& effective_rates, const Array<int, R_SIZE>& section_day)
+    RateSet(m_long start_sum, int section_count, Array<int, R_SIZE>& section_day, Array<double, R_SIZE>& base_rates, Array<double, R_SIZE>& effective_rates)
     {
         this->start_sum = start_sum;
+        this->section_count = section_count;
         this->effective_rates = effective_rates;
         this->base_rates = base_rates;
         this->section_day = section_day;
@@ -28,6 +29,11 @@ public:
     m_long getSum()
     {
         return start_sum;
+    }
+
+    int getSectionCount()
+    {
+        return section_count;
     }
 };
 
