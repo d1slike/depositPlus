@@ -11,7 +11,6 @@ class RateSet
     m_long start_sum;
 
 public:
-    /*Для большей эффективности*/
     Array<int, R_SIZE> section_day;//границы по дням
     Array<double, R_SIZE> base_rates;//номинальные проценты
     Array<double, R_SIZE> effective_rates;//проценты с капитализацией

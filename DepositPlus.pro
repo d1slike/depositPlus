@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     ui_logic/mainform.cpp \
     calc_logic/model/ratesmatrix.cpp \
     calc_logic/model/date.cpp \
-    calc_logic/model/deposit.cpp
+    calc_logic/model/deposit.cpp \
+    calc_logic/templates/depositholder.cpp
 
 HEADERS  += \
     utils/array.h \
