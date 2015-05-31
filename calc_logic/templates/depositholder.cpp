@@ -7,11 +7,11 @@ DepositHolder::DepositHolder()
     FILE* file = fopen("data.dat", "wb");
     if(file == NULL)
         return;
-    int desk = fileno(file);
+    int desk = _fileno(file);
     DepositTemplate *tmp = 0;
-    for(in i = 0; i < filelength(desk) / sizeof(DepositTemplate); i++)
+    for(unsigned int i = 0; i < _filelength(desk) / sizeof(DepositTemplate); i++)
     {
         fread(tmp, sizeof(DepositTemplate), 1, file);
-        all.insert(tmp->getName(), *tmp);
+        all.insert(std::pair<QString, DepositTemplate>(tmp->getName(), *tmp));
     }
 }

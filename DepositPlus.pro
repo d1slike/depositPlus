@@ -13,15 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    ui_logic/mainform.cpp \
     calc_logic/model/ratesmatrix.cpp \
     calc_logic/model/date.cpp \
     calc_logic/model/deposit.cpp \
-    calc_logic/templates/depositholder.cpp
+    calc_logic/templates/depositholder.cpp \
+    ui_logic/mainwindow.cpp
 
 HEADERS  += \
     utils/array.h \
-    ui_logic/mainform.h \
     utils/section.h \
     calc_logic/model/date.h \
     calc_logic/model/deposit.h \
@@ -29,7 +28,8 @@ HEADERS  += \
     calc_logic/model/ratesmatrix.h \
     calc_logic/model/valute.h \
     calc_logic/templates/depositholder.h \
-    calc_logic/templates/deposittemplate.h
+    calc_logic/templates/deposittemplate.h \
+    ui_logic/mainwindow.h
 
 FORMS    += \
-    ui_logic/mainform.ui
+    ui_logic/mainwindow.ui
