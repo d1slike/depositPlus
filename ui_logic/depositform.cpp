@@ -6,7 +6,8 @@ DepositForm::DepositForm(QWidget *parent) :
     ui(new Ui::DepositForm)
 {
     ui->setupUi(this);
-    QRegExp sum_exp("[0-9]{1,9}");
+
+    QRegExp sum_exp("[1-9]{1}[0-9]{0,9}");
     QRegExp days_exp("[1-9]{1,4}");
     QRegExpValidator* validator = new QRegExpValidator(sum_exp, this);
     ui->start_sum->setValidator(validator);
@@ -14,16 +15,9 @@ DepositForm::DepositForm(QWidget *parent) :
     ui->day_count->setValidator(new QRegExpValidator(days_exp, this));
 }
 
+
+
 DepositForm::~DepositForm()
 {
     delete ui;
-}
-
-void DepositForm::validFields()
-{
-    bool ok = false;
-    ok = ui->start_sum->hasAcceptableInput() && ui->day_count->hasAcceptableInput();
-    if(ui->month_add->isEnabled())
-        ok = ui->month_add->hasAcceptableInput();
-
 }

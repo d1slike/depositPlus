@@ -14,12 +14,15 @@ class DepositForm : public QDialog
 public:
     explicit DepositForm(QWidget *parent = 0);
     ~DepositForm();
+    Ui::DepositForm* getUI()
+    {
+        return ui;
+    }
 
-private:
+public: // WTF
     Ui::DepositForm *ui;
 
-private slots:
-    void validFields();
+
 };
 
 #endif // DEPOSITFORM_H

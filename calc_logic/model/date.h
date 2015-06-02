@@ -27,6 +27,7 @@ public:
     Date& operator+(int add_days);
     bool isLeapYear();
     int getDaysToNewYear();
+    bool validDate();
 
     int getDay()
     {
@@ -57,6 +58,7 @@ public:
     {
         year = _year;
     }
+
 
 };
 

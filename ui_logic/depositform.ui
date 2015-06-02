@@ -79,14 +79,14 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="start_date">
+            <widget class="QLabel" name="start_date_label">
              <property name="text">
               <string>Дата открытия</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="start_date_label">
+            <widget class="QDateEdit" name="start_date">
              <property name="enabled">
               <bool>false</bool>
              </property>
