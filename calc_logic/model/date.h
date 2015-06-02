@@ -18,6 +18,7 @@ public:
         year = -1;
     }
     Date(int, int, int);
+    int operator-(const Date&);
     bool operator==(const Date &date);
     bool operator>(const Date &date);
     bool operator<(const Date &date);

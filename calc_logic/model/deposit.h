@@ -7,14 +7,19 @@
 #include "money.h"
 #include "math.h"
 
+#define poste_restante 0.01 // ставка вклада до востребования
+
 //конкртеный экземпляр вклада
 //служит для расчетов
 class Deposit
 {
     DepositTemplate templ;
     Money sum;
+    Money add_sum;
     Date date;
+    Date d_remove;
     int day_count;
+    bool replenishment;//флаг ежемесячного пополнения вклада
     bool capitalize;//флаг капитализации
     bool remove;//флаг досрочного снятия
 public:

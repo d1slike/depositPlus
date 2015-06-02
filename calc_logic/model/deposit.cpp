@@ -1,15 +1,70 @@
 #include "deposit.h"
 Money Deposit::calc() // в if добавить ништяков для обработки всего периодов и тд
 {
+    Money cash=sum;
+    cash=0;
     double rates = templ.getRates().get(sum, day_count, capitalize);
-    /*RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
-    RatesMatrix r=templ.getRates();                 //
-    R=r[sum];                                       //
-    rates=R.get(day_count,templ.isCanCapitalize()); /*/
-    if(capitalize)
-        return calcWithCap(rates,sum.getValue(),day_count);
-    else
-        return simpleCalc(rates,sum.getValue(),day_count);
+    if(capitalize&&!replenishment&&!remove)     //только капитализация
+        return cash=calcWithCap(rates,sum.getValue(),day_count).getValue();
+    if(!capitalize&&!replenishment&&!remove)    //без всего
+        return cash=simpleCalc(rates,sum.getValue(),day_count).getValue();
+    if(capitalize&&replenishment&&!remove)//капитализация+добавление
+    {
+        int d=day_count/30;
+        for(int i=0;i<d;i++)
+        {
+            cash=cash+calcWithCap(rates,sum.getValue()+cash.getValue(),30).getValue();//под вопросом
+            sum=sum.getValue()+add_sum.getValue();
+        }
+        d=day_count%30;
+        return cash=cash+calcWithCap(rates,sum.getValue()+cash.getValue(),d).getValue();//под вопросом
+    }
+    if(!capitalize&&replenishment&&!remove)//без капитализации+добавление
+    {
+        int d=day_count/30;
+        for(int i=0;i<d;i++)
+        {
+            cash=cash+simpleCalc(rates,sum.getValue(),30).getValue();
+            sum=sum.getValue()+add_sum.getValue();
+        }
+        d=day_count%30;
+        return cash=cash+simpleCalc(rates,sum.getValue(),d).getValue();
+    }
+    if(capitalize&&!replenishment&&remove)      //снятие с капитализацией
+    {
+        int day_remove=date-d_remove;
+        return cash=calcWithCap(poste_restante,sum.getValue(),day_remove).getValue();
+    }
+    if(!capitalize&&!replenishment&&remove)     //снятие без капитализации
+    {
+        int day_remove=date-d_remove;
+        return cash=simpleCalc(poste_restante,sum.getValue(),day_remove).getValue();
+    }
+    if(capitalize&&replenishment&&remove)//капитализация+добавление+снятие
+    {
+        int day_remove=date-d_remove;
+        int d=day_remove/30;
+        for(int i=0;i<d;i++)
+        {
+            cash=cash+calcWithCap(poste_restante,sum.getValue()+cash.getValue(),30).getValue();//под вопросом
+            sum=sum.getValue()+add_sum.getValue();
+        }
+        d=day_count%30;
+        return cash=cash+calcWithCap(poste_restante,sum.getValue()+cash.getValue(),d).getValue();//под вопросом
+    }
+    if(!capitalize&&replenishment&&remove)//без капитализации+добавление+снятие
+    {
+        int day_remove=date-d_remove;
+        int d=day_remove/30;
+        for(int i=0;i<d;i++)
+        {
+            cash=cash+simpleCalc(poste_restante,sum.getValue(),30).getValue();
+            sum=sum.getValue()+add_sum.getValue();
+        }
+        d=day_count%30;
+        return cash=cash+simpleCalc(poste_restante,sum.getValue(),d).getValue();
+    }
+    return cash;
 }
 
 Money Deposit::calcWithCap(double rates, m_long startsum,int day)

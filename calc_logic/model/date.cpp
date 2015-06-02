@@ -9,6 +9,11 @@ Date::Date(int _day, int _month, int _year)
     year = _year;
 }
 
+int Date::operator-(const Date &date)
+{
+    return 1;
+}
+
 bool Date::operator==(const Date &date)
 {
     if (day == date.day && month == date.month && year == date.year)
