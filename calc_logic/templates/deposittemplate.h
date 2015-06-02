@@ -1,3 +1,6 @@
+#ifndef DEPOSITTEMPLATE_H
+#define DEPOSITTEMPLATE_H
+
 #include <QString>
 #include "../model/ratesmatrix.h"
 
@@ -86,5 +89,7 @@ public:
     }
 
 };
+
+#endif
 
 

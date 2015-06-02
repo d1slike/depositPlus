@@ -1,3 +1,6 @@
+#ifndef MONEY_H
+#define MONEY_H
+
 #include "valute.h"
 #pragma once
 
@@ -117,3 +120,4 @@ public:
     //TODO реализовать другие операторы по необходимоти
 };
 
+#endif

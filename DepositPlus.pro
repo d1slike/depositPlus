@@ -18,7 +18,9 @@ SOURCES += main.cpp \
     calc_logic/model/deposit.cpp \
     calc_logic/templates/depositholder.cpp \
     ui_logic/mainwindow.cpp \
-    ui_logic/depositform.cpp
+    ui_logic/depositform.cpp \
+    controller.cpp \
+    calc_logic/model/profitresult.cpp
 
 HEADERS  += \
     utils/array.h \
@@ -31,7 +33,9 @@ HEADERS  += \
     calc_logic/templates/depositholder.h \
     calc_logic/templates/deposittemplate.h \
     ui_logic/mainwindow.h \
-    ui_logic/depositform.h
+    ui_logic/depositform.h \
+    controller.h \
+    calc_logic/model/profitresult.h
 
 FORMS    += \
     ui_logic/mainwindow.ui \

@@ -1,8 +1,12 @@
+#ifndef DEPOSIT_H
+#define DEPOSIT_H
+
 #include "../templates/deposittemplate.h"
 #include "valute.h"
 #include "date.h"
 #include "money.h"
 #include "math.h"
+
 //конкртеный экземпляр вклада
 //служит для расчетов
 class Deposit
@@ -25,4 +29,6 @@ public:
     Money CalcCap(double, m_long ,int);
     Money CalcNoCap(double, m_long ,int);
 };
+
+#endif
 

@@ -53,6 +53,9 @@
           <enum>QFrame::Sunken</enum>
          </property>
          <widget class="QCheckBox" name="is_cap_check">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>11</x>
@@ -83,7 +86,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="start_date_label"/>
+            <widget class="QDateEdit" name="start_date_label">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -105,7 +112,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="valute_list"/>
+            <widget class="QComboBox" name="valute_list">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -143,6 +154,9 @@
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
             <widget class="QCheckBox" name="remove_date_check">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Досрочное снятие</string>
              </property>
@@ -163,7 +177,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="remove_date"/>
+            <widget class="QDateEdit" name="remove_date">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -185,7 +203,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="day_count"/>
+            <widget class="QLineEdit" name="day_count">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="day_count_min">
@@ -214,7 +236,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="month_add"/>
+            <widget class="QLineEdit" name="month_add">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -236,7 +262,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="start_sum"/>
+            <widget class="QLineEdit" name="start_sum">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="min_start_sum">
@@ -254,6 +284,9 @@
     </item>
     <item>
      <widget class="QPushButton" name="do_calc_button">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string>Рассчитать</string>
       </property>

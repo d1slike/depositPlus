@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef DATE_H
+#define DATE_H
 namespace days{
     const static int DAYS_IN_MOUTH[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
     const static int DAYS_IN_MOUTH_LEAP[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -58,4 +58,6 @@ public:
     }
 
 };
+
+#endif
 

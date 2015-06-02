@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::DepositForm *ui;
+
+private slots:
+    void validFields();
 };
 
 #endif // DEPOSITFORM_H

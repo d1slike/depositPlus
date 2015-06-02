@@ -1,3 +1,6 @@
+#ifndef DEPOSITHOLDER_H
+#define DEPOSITHOLDER_H
+
 #include "deposittemplate.h"
 #include <map>
 
@@ -18,6 +21,7 @@ public:
     }
 };
 
+#endif
 
 
 

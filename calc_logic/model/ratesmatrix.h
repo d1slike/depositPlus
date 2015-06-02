@@ -1,8 +1,11 @@
+#ifndef RATESMATRIX_H
+#define RATESMATRIX_H
+
 #include "utils/array.h"
 #include "utils/section.h"
 #include "valute.h"
 #include "money.h"
-#pragma once
+
 
 #define R_SIZE 6
 
@@ -55,5 +58,7 @@ public:
     void get(const Money& m, int day, bool withCap, double* rates, int* startDays);
     double get(const Money& m, int day, bool withCap);
 };
+
+#endif
 
 
