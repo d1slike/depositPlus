@@ -25,9 +25,9 @@ public:
         this->templ = templ;
         this->date=date;
     }
-    Money Calc();
-    Money CalcCap(double, m_long ,int);
-    Money CalcNoCap(double, m_long ,int);
+    Money calc();
+    Money calcWithCap(double, m_long ,int);
+    Money simpleCalc(double, m_long ,int);
 };
 
 #endif

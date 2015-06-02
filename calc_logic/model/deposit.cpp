@@ -1,5 +1,5 @@
 #include "deposit.h"
-Money Deposit::Calc() // в if добавить ништяков для обработки всего периодов и тд
+Money Deposit::calc() // в if добавить ништяков для обработки всего периодов и тд
 {
     double rates = templ.getRates().get(sum, day_count, capitalize);
     /*RateSet R;                                      //СДЕЛАЙ ПРОЩЕ ХРЕН ДОСТУЧИШЬСЯ
@@ -7,12 +7,12 @@ Money Deposit::Calc() // в if добавить ништяков для обра
     R=r[sum];                                       //
     rates=R.get(day_count,templ.isCanCapitalize()); /*/
     if(capitalize)
-        return CalcCap(rates,sum.getValue(),day_count);
+        return calcWithCap(rates,sum.getValue(),day_count);
     else
-        return CalcNoCap(rates,sum.getValue(),day_count);
+        return simpleCalc(rates,sum.getValue(),day_count);
 }
 
-Money Deposit::CalcCap(double rates, m_long startsum,int day)
+Money Deposit::calcWithCap(double rates, m_long startsum,int day)
 {
     m_long value=0;
     int day_to_ny=date.getDaysToNewYear();
@@ -41,7 +41,7 @@ Money Deposit::CalcCap(double rates, m_long startsum,int day)
     }
     return Money(ABSTRACT, value);
 }
-Money Deposit::CalcNoCap(double rates, m_long  startsum, int day)
+Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
 {
     m_long value=0;
     int day_to_ny=date.getDaysToNewYear();

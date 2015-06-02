@@ -2,7 +2,6 @@
 #define RATESMATRIX_H
 
 #include "utils/array.h"
-#include "utils/section.h"
 #include "valute.h"
 #include "money.h"
 

@@ -24,7 +24,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     utils/array.h \
-    utils/section.h \
     calc_logic/model/date.h \
     calc_logic/model/deposit.h \
     calc_logic/model/money.h \
