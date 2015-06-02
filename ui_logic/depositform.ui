@@ -34,7 +34,7 @@
      <x>10</x>
      <y>50</y>
      <width>581</width>
-     <height>331</height>
+     <height>341</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -44,7 +44,7 @@
        <string>Поля для заполнения</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QFrame" name="frame">
          <property name="frameShape">
           <enum>QFrame::Box</enum>
@@ -52,136 +52,143 @@
          <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="is_cap_check">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>207</y>
-            <width>70</width>
-            <height>17</height>
+            <width>151</width>
+            <height>21</height>
            </rect>
           </property>
           <property name="text">
-           <string>CheckBox</string>
+           <string>Капитализация</string>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>95</y>
-            <width>168</width>
-            <height>22</height>
+            <width>230</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="start_date">
              <property name="text">
               <string>Дата открытия</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit"/>
+            <widget class="QDateEdit" name="start_date_label"/>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>39</y>
-            <width>116</width>
-            <height>22</height>
+            <width>157</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="valute_list_label">
              <property name="text">
               <string>Валюта</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_2"/>
+            <widget class="QComboBox" name="valute_list"/>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>11</y>
-            <width>108</width>
-            <height>22</height>
+            <width>146</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="deposit_list_label">
              <property name="text">
               <string>Вклад</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox"/>
+            <widget class="QComboBox" name="deposit_list"/>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>179</y>
-            <width>337</width>
-            <height>22</height>
+            <width>488</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QCheckBox" name="checkBox_2">
+            <widget class="QCheckBox" name="remove_date_check">
              <property name="text">
               <string>Досрочное снятие</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_2"/>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_9">
+            <widget class="QLabel" name="remove_date_label">
              <property name="text">
               <string>Дата досрочного снятия</string>
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QDateEdit" name="remove_date"/>
+           </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>123</y>
-            <width>400</width>
-            <height>22</height>
+            <width>456</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="day_count_label">
              <property name="text">
               <string>Количество дней</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QLineEdit" name="day_count"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_8">
+            <widget class="QLabel" name="day_count_min">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#ff0000;&quot;&gt;Минимальное количество дней :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -189,67 +196,54 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>151</y>
-            <width>271</width>
-            <height>22</height>
+            <width>421</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="month_add_label">
              <property name="text">
               <string>Ежемесячное пополнение</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_2"/>
+            <widget class="QLineEdit" name="month_add"/>
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>11</x>
             <y>67</y>
-            <width>444</width>
-            <height>22</height>
+            <width>491</width>
+            <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="label_start_sum">
              <property name="text">
               <string>Начальная сумма</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="start_sum"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="min_start_sum">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#ff0000;&quot;&gt;Минимальная начальная сумма: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </widget>
@@ -259,7 +253,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="do_calc_button">
       <property name="text">
        <string>Рассчитать</string>
       </property>
