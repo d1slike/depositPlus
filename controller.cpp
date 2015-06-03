@@ -1,25 +1,91 @@
 #include "controller.h"
 #include <QDate>
+
+#define dep_ui dep_win->ui
+#define main_ui main_win->ui
+
 Controller::Controller(MainWindow* main, DepositHolder* holder)
 {
-    this->main_win = main;
+    main_win = main;
     this->holder = holder;
-    this->dep = 0;
-    this->dep_win = 0;
+    dep = 0;
+    dep_win = 0;
     blocked = false;
+    DEFAULT = main_win->ui->d_result_1->palette();
+    MAX = DEFAULT;
+    MAX.setColor(QPalette::Window, QColor(255, 43, 43));
+    for(int i = 0; i < 3; i++)
+        results_field_free[i] = true;
+    currentResult = -1;
     valid_start_sum = valid_open_date = valid_days_count = valid_supplement_sum = valid_close_date = false;
-    connect(main_win->ui->add_1, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
-    connect(main_win->ui->add_2, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
-    connect(main_win->ui->add_3, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
+    connect(main_ui->add_1, SIGNAL(pressed()), this, SLOT(_1AddButtonAction()));
+    connect(main_ui->add_2, SIGNAL(pressed()), this, SLOT(_2AddButtonAction()));
+    connect(main_ui->add_3, SIGNAL(pressed()), this, SLOT(_3AddButtonAction()));
+
+    connect(main_win->ui->clear_1, SIGNAL(pressed()), this, SLOT(_1ClearButtonAction()));
+    connect(main_win->ui->clear_2, SIGNAL(pressed()), this, SLOT(_2ClearButtonAction()));
+    connect(main_win->ui->clear_3, SIGNAL(pressed()), this, SLOT(_3ClearButtonAction()));
 
 }
 
-void Controller::newDepositCalculate()
+void Controller::_1AddButtonAction()
 {
     if(blocked)
         return;
+    currentResult = 0;
+    newDepositCalculate();
+}
+
+void Controller::_2AddButtonAction()
+{
+    if(blocked)
+        return;
+    currentResult = 1;
+
+    newDepositCalculate();
+}
+
+void Controller::_3AddButtonAction()
+{
+    if(blocked)
+        return;
+    currentResult = 2;
+    newDepositCalculate();
+}
+
+void Controller::_1ClearButtonAction()
+{
+    results_field_free[currentResult] = true;
+    currentResult = -1;
+    main_win->ui->add_1->setEnabled(true);
+    main_win->ui->d_result_1->insertPlainText("");
+    main_win->ui->d_result_1->setEnabled(false);
+
+}
+
+void Controller::_2ClearButtonAction()
+{
+    results_field_free[currentResult] = true;
+    currentResult = -1;
+    main_win->ui->add_2->setEnabled(true);
+    main_win->ui->d_result_2->insertPlainText("");
+    main_win->ui->d_result_2->setEnabled(false);
+}
+
+void Controller::_3ClearButtonAction()
+{
+    results_field_free[currentResult] = true;
+    currentResult = -1;
+    main_win->ui->add_3->setEnabled(true);
+    main_win->ui->d_result_3->insertPlainText("");
+    main_win->ui->d_result_3->setEnabled(false);
+}
+
+
+void Controller::newDepositCalculate()
+{
     dep = new Deposit;
-    dep_win = new DepositForm();
+    dep_win = new DepositForm(main_win);
     connect(dep_win, SIGNAL(finished(int)), this, SLOT(onClosingDepWindow()));
     connect(dep_win->ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
     connect(dep_win->ui->start_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
@@ -31,6 +97,7 @@ void Controller::newDepositCalculate()
     connect(dep_win->ui->capitalisation_flag, SIGNAL(clicked(bool)), this, SLOT(setCapitalisationFlag()));
     connect(dep_win->ui->early_close_date, SIGNAL(dateChanged(QDate)), this, SLOT(validEarlyCloseDate()));
     connect(dep_win->ui->early_close_date_flag, SIGNAL(clicked(bool)), this, SLOT(setEarlyClosingDateFlag()));
+    connect(dep_win->ui->do_calc_button, SIGNAL(clicked(bool)), this, SLOT(calculate()));
 
     dep_win->ui->deposit_list->addItems(holder->getNames());
     blocked = true;
@@ -128,6 +195,65 @@ void Controller::validEarlyCloseDate()
     valid_close_date = valid_close_date && dep->validDate();
     validAllConditions();
 
+}
+
+void Controller::calculate()
+{
+    results[currentResult] = dep->getProfit();
+    results_field_free[currentResult] = false;
+    switch (currentResult) {
+    case 0:
+        main_win->ui->d_result_1->setEnabled(true);
+        main_win->ui->add_1->setEnabled(false);
+        main_win->ui->clear_1->setEnabled(true);
+        main_win->ui->d_result_1->setPlainText(results[currentResult].toString());
+        break;
+    case 1:
+        main_win->ui->d_result_2->setEnabled(true);
+        main_win->ui->add_2->setEnabled(false);
+        main_win->ui->clear_2->setEnabled(true);
+        main_win->ui->d_result_2->setPlainText(results[currentResult].toString());
+        break;
+    case 2:
+        main_win->ui->d_result_3->setEnabled(true);
+        main_win->ui->add_3->setEnabled(false);
+        main_win->ui->clear_3->setEnabled(true);
+        main_win->ui->d_result_3->setPlainText(results[currentResult].toString());
+        break;
+    default:
+        break;
+    }
+    main_win->ui->d_result_1->setPalette(DEFAULT);
+    main_win->ui->d_result_2->setPalette(DEFAULT);
+    main_win->ui->d_result_3->setPalette(DEFAULT);
+    ProfitResult max;
+    for(int i = 0; i < 3; i++)
+    {
+        if(results_field_free[i])
+            continue;
+        else
+            max = results[i];
+    }
+    int max_field = 0;
+    for(int i = 0; i < 3; i++)
+        if(results[i] > max)
+        {
+            max = results[i];
+            max_field = i;
+        }
+    switch(max_field)
+    {
+    case 1:
+        main_win->ui->d_result_1->setPalette(MAX);
+        break;
+    case 2:
+        main_win->ui->d_result_1->setPalette(MAX);
+        break;
+    case 3:
+        main_win->ui->d_result_1->setPalette(MAX);
+        break;
+    }
+    dep_win->close();
 }
 
 inline void Controller::validAllConditions()

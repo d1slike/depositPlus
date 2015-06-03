@@ -33,6 +33,13 @@ public:
     int getDaysToNewYear();
     bool validMe(); //возвращает ИСТИНУ, если дата соотвествтвует корректному формату
 
+    QString toString()
+    {
+        QString str = QString::number(day) + "." + QString::number(month) + "." + QString::number(year);
+       // str.nu
+        return str;
+    }
+
     int getDay()
     {
         return day;
