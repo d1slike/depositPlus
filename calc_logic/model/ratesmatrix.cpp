@@ -25,8 +25,19 @@ double RatesMatrix::get(const Money& m, int day, bool isCap)
 
 m_long RatesMatrix::getStartSum(const Money &m)
 {
-    RateSet tmp = getSuitRates(m);
-    return tmp.getSum();
+    switch (m.getValue()) {
+    case RUB:
+        return rub_rates[0].getSum();
+        break;
+    case USD:
+        return usd_rates[0].getSum();
+        break;
+    case EUR:
+        return eur_rates[0].getSum();
+        break;
+    default:
+        return 0;
+    }
 }
 
 RateSet& RatesMatrix::getSuitRates(const Money& m)//TODO обработать минимальные суммы, иначе получим краш
