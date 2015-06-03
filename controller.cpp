@@ -5,9 +5,9 @@ Controller::Controller(MainWindow* main, DepositHolder* holder)
     this->main_win = main;
     this->holder = holder;
     this->dep = 0;
-    this->dep_form = 0;
+    this->dep_win = 0;
     blocked = false;
-    valid_start_sum = valid_date_open = valid_days_count = valid_add_month_sum = valid_date_remove = false;
+    valid_start_sum = valid_open_date = valid_days_count = valid_supplement_sum = valid_close_date = false;
     connect(main_win->ui->add_1, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
     connect(main_win->ui->add_2, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
     connect(main_win->ui->add_3, SIGNAL(pressed()), this, SLOT(newDepositCalculate()));
@@ -19,130 +19,132 @@ void Controller::newDepositCalculate()
     if(blocked)
         return;
     dep = new Deposit;
-    dep_form = new DepositForm();
-    connect(dep_form, SIGNAL(finished(int)), this, SLOT(onDestroyDepForm()));
-    connect(dep_form->ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
-    connect(dep_form->ui->start_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
-    connect(dep_form->ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
-    connect(dep_form->ui->deposit_list, SIGNAL(editTextChanged(QString)), this, SLOT(setTemplate()));
-    connect(dep_form->ui->valute_list, SIGNAL(editTextChanged(QString)), this, SLOT(setValute()));
-    connect(dep_form->ui->month_add, SIGNAL(textChanged(QString)), this, SLOT(validAddMonthSum()));
-    connect(dep_form->ui->is_cap_check, SIGNAL(clicked(bool)), this, SLOT(setCap()));
-    connect(dep_form->ui->remove_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateRemove()));
-    connect(dep_form->ui->remove_date_check, SIGNAL(clicked(bool)), this, SLOT(setRemoveDate()));
+    dep_win = new DepositForm();
+    connect(dep_win, SIGNAL(finished(int)), this, SLOT(onClosingDepWindow()));
+    connect(dep_win->ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
+    connect(dep_win->ui->start_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
+    connect(dep_win->ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
+    connect(dep_win->ui->deposit_list, SIGNAL(editTextChanged(QString)), this, SLOT(setTemplate()));
+    connect(dep_win->ui->valute_list, SIGNAL(editTextChanged(QString)), this, SLOT(setValute()));
+    connect(dep_win->ui->supplement_flag, SIGNAL(clicked(bool)), this, SLOT(setSupplementationFlag()));
+    connect(dep_win->ui->supplement_sum, SIGNAL(textChanged(QString)), this, SLOT(validSupplementSum()));
+    connect(dep_win->ui->capitalisation_flag, SIGNAL(clicked(bool)), this, SLOT(setCapitalisationFlag()));
+    connect(dep_win->ui->early_close_date, SIGNAL(dateChanged(QDate)), this, SLOT(validEarlyCloseDate()));
+    connect(dep_win->ui->early_close_date_flag, SIGNAL(clicked(bool)), this, SLOT(setEarlyClosingDateFlag()));
 
-    dep_form->ui->deposit_list->addItems(holder->getNames());
-    QStringList list;
-    list.append("RUB");
-    list.append("USD");
-    list.append("EUR");
-    dep_form->ui->valute_list->addItems(list);
+    dep_win->ui->deposit_list->addItems(holder->getNames());
     blocked = true;
-    dep_form->show();
+    dep_win->show();
 
 }
 
-void Controller::onDestroyDepForm()
+void Controller::onClosingDepWindow()
 {
     delete dep;
-    dep_form->deleteLater();
+    dep_win->deleteLater();
     blocked = false;
 }
 
-void Controller::setRemoveDate()
+void Controller::setEarlyClosingDateFlag()
 {
-    bool b = dep_form->ui->remove_date_check->isChecked();
-    dep_form->ui->remove_date->setEnabled(b);
-    dep->setRemove(b);
+    bool b = dep_win->ui->early_close_date_flag->isChecked();
+    dep_win->ui->early_close_date->setEnabled(b);
+    dep->setEarlyClosing(b);
 }
 
-void Controller::setCap()
+void Controller::setCapitalisationFlag()
 {
-    dep->setCap(dep_form->ui->is_cap_check->isChecked());
+    dep->setCapitalisation(dep_win->ui->capitalisation_flag->isChecked());
+}
+
+void Controller::setSupplementationFlag()
+{
+    bool b = dep_win->ui->early_close_date_flag->isChecked();
+    dep_win->ui->supplement_sum->setEnabled(b);
+    dep->setSupplementation(b);
 }
 
 void Controller::setValute()
 {
-    Valute v = (Valute) dep_form->ui->valute_list->currentIndex();
-    dep->getSum().setValute(v);
-    dep->getAddSum().setValute(v);
+    Valute v = (Valute) dep_win->ui->valute_list->currentIndex();
+    dep->getStartSum().setValute(v);
+    dep->getSupplementSum().setValute(v);
 }
 
 void Controller::setTemplate()
 {
-    dep->setTemplate(holder->getTemplByName(dep_form->ui->deposit_list->currentText()));
+    dep->setTemplate(holder->getTemplByName(dep_win->ui->deposit_list->currentText()));
     enableAll();
 }
 
 void Controller::validStartSum()
 {
-    valid_start_sum = dep_form->ui->day_count->hasAcceptableInput();
+    valid_start_sum = dep_win->ui->day_count->hasAcceptableInput();
     if(valid_start_sum)
-        dep->getSum().setValue(dep_form->ui->start_sum->text().toInt());
+        dep->getStartSum().setValue(dep_win->ui->start_sum->text().toInt());
     valid_start_sum = valid_start_sum && dep->validSum();
     validAllConditions();
 }
 
 void Controller::validDateOpen()
 {
-    Date d(dep_form->ui->start_date->date());
-    valid_date_open = d.checkMe();
-    if(valid_date_open)
+    Date d(dep_win->ui->start_date->date());
+    valid_open_date = d.validMe();
+    if(valid_open_date)
         dep->setOpenDate(d);
     validAllConditions();
 }
 
 void Controller::validDaysCount()
 {
-    valid_days_count = dep_form->ui->day_count->hasAcceptableInput();
+    valid_days_count = dep_win->ui->day_count->hasAcceptableInput();
     if(valid_days_count)
     {
-            dep->setDayCount(dep_form->ui->day_count->text().toInt());
+            dep->setDayCount(dep_win->ui->day_count->text().toInt());
     }
     valid_days_count = valid_days_count && dep->validDate();
     validAllConditions();
 }
 
-void Controller::validAddMonthSum()
+void Controller::validSupplementSum()
 {
-    valid_add_month_sum = dep_form->ui->month_add->hasAcceptableInput();
-    if(valid_add_month_sum)
-        dep->getAddSum().setValue(dep_form->ui->month_add->text().toInt());
+    valid_supplement_sum = dep_win->ui->supplement_sum->hasAcceptableInput();
+    if(valid_supplement_sum)
+        dep->getSupplementSum().setValue(dep_win->ui->supplement_sum->text().toInt());
     validAllConditions();
 }
 
-void Controller::validDateRemove()
+void Controller::validEarlyCloseDate()
 {
-    if(dep_form->ui->remove_date->isEnabled())
+    if(dep_win->ui->early_close_date->isEnabled())
     {
-        Date d(dep_form->ui->remove_date->date());
-        if(valid_date_remove = d.checkMe())
+        Date d(dep_win->ui->early_close_date->date());
+        if(valid_close_date = d.validMe())
         {
             dep->setCloseDate(d);
             dep->setDayCount();
         }
     }
-    valid_date_remove = valid_date_remove && dep->validDate();
+    valid_close_date = valid_close_date && dep->validDate();
     validAllConditions();
 
 }
 
-void Controller::validAllConditions()
+inline void Controller::validAllConditions()
 {
-    bool b = valid_start_sum && valid_date_open && valid_days_count && valid_add_month_sum && valid_date_remove;
-    if(b)
-        dep_form->ui->do_calc_button->setEnabled(true);
+
+    dep_win->ui->do_calc_button->setEnabled(valid_start_sum && valid_open_date && valid_days_count && valid_supplement_sum && valid_close_date);
 
 }
 
 void Controller::enableAll()
 {
-    Ui::DepositForm* ui = dep_form->ui;
+    Ui::DepositForm* ui = dep_win->ui;
     ui->day_count->setEnabled(true);
-    ui->is_cap_check->setEnabled(true);
+    ui->capitalisation_flag->setEnabled(dep->getTempl().isCanCapitalize());
     ui->valute_list->setEnabled(true);
     ui->start_sum->setEnabled(true);
     ui->start_date->setEnabled(true);
-    ui->month_add->setEnabled(true);
-    ui->remove_date_check->setEnabled(true);
+    ui->supplement_flag->setEnabled(dep->getTempl().isCanSupplement());
+    ui->early_close_date_flag->setEnabled(dep->getTempl().isCanEarlyClose());
 }

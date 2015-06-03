@@ -52,7 +52,7 @@
          <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <widget class="QCheckBox" name="is_cap_check">
+         <widget class="QCheckBox" name="capitalisation_flag">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -154,13 +154,13 @@
            <rect>
             <x>11</x>
             <y>179</y>
-            <width>488</width>
+            <width>502</width>
             <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QCheckBox" name="remove_date_check">
+            <widget class="QCheckBox" name="early_close_date_flag">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -177,14 +177,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="remove_date_label">
+            <widget class="QLabel" name="early_close_date_label">
              <property name="text">
               <string>Дата досрочного снятия</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="remove_date">
+            <widget class="QDateEdit" name="early_close_date">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -230,20 +230,30 @@
            <rect>
             <x>11</x>
             <y>151</y>
-            <width>421</width>
+            <width>503</width>
             <height>27</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <widget class="QLabel" name="month_add_label">
+            <widget class="QCheckBox" name="supplement_flag">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Ежемесячное пополнение</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="month_add">
+            <widget class="QLabel" name="supplement_sum_label">
+             <property name="text">
+              <string>Сумма</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="supplement_sum">
              <property name="enabled">
               <bool>false</bool>
              </property>

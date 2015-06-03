@@ -31,7 +31,7 @@ public:
     Date& operator+(int add_days);
     bool isLeapYear();
     int getDaysToNewYear();
-    bool checkMe(); //возвращает ИСТИНУ, если дата соотвествтвует корректному формату
+    bool validMe(); //возвращает ИСТИНУ, если дата соотвествтвует корректному формату
 
     int getDay()
     {

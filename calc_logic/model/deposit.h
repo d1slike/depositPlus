@@ -14,22 +14,16 @@
 class Deposit
 {
     DepositTemplate templ;
-    Money sum;
-    Money add_sum;
+    Money start_sum;
+    Money supplement_sum;
     Date open_date;
     Date close_date;
     int day_count;
-    bool replenishment;//флаг ежемесячного пополнения вклада
-    bool capitalize;//флаг капитализации
-    bool remove;//флаг досрочного снятия
+    bool supplementation;//флаг ежемесячного пополнения вклада
+    bool capitalization;//флаг капитализации
+    bool early_closing;//флаг досрочного снятия
 public:
-    /*Deposit(Money sum, int day_count, DepositTemplate templ, Date date)
-    {
-        this->day_count = day_count;
-        this->sum = sum;
-        this->templ = templ;
-        this->open_date=date;
-    }*/
+
     Money calc();
     Money calcWithCap(double, m_long ,int);
     Money simpleCalc(double, m_long ,int);
@@ -42,14 +36,14 @@ public:
         templ = temp;
     }
 
-    void setSum(Money& m)
+    void setStartSum(Money& m)
     {
-        sum = m;
+        start_sum = m;
     }
 
-    void setAddSum(Money &m)
+    void setSupplementSum(Money &m)
     {
-        add_sum = m;
+        supplement_sum = m;
     }
 
     void setOpenDate(Date& od)
@@ -73,29 +67,29 @@ public:
         close_date = open_date + day_count;
     }
 
-    void setReplenishment(bool b)
+    void setSupplementation(bool b)
     {
-        replenishment = b;
+        supplementation = b;
     }
 
-    void setCap(bool b)
+    void setCapitalisation(bool b)
     {
-        capitalize = b;
+        capitalization = b;
     }
 
-    void setRemove(bool b)
+    void setEarlyClosing(bool b)
     {
-        remove = b;
+        early_closing = b;
     }
 
-    Money& getSum()
+    Money& getStartSum()
     {
-        return sum;
+        return start_sum;
     }
 
-    Money& getAddSum()
+    Money& getSupplementSum()
     {
-        return add_sum;
+        return supplement_sum;
     }
 
     Date& getOpenDate()
@@ -113,19 +107,19 @@ public:
         return day_count;
     }
 
-    bool isReplenishment()
+    bool isSupplementation()
     {
-        return replenishment;
+        return supplementation;
     }
 
-    bool isCap()
+    bool isCapitalization()
     {
-        return capitalize;
+        return capitalization;
     }
 
-    bool isRemove()
+    bool isEarlyClosing()
     {
-        return remove;
+        return early_closing;
     }
 
     DepositTemplate& getTempl()

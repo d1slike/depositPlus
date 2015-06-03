@@ -9,16 +9,16 @@
 //Шаблоны будут храниться рядом с программой в .dat
 class DepositTemplate{
     QString name; //название вклада
-    QString info; //описание вклада в <html>
+    //QString info; //описание вклада в <html>
     RatesMatrix rates; //матрица ставок
     bool can_capitalize; //капитализация процентов
-    bool can_add; //можно добавлять
-    bool can_remove; //можно досрочно снимать
-    bool dynam_rates;//градация по ставкам
+    bool can_supplement; //можно добавлять
+    bool can_early_close; //можно досрочно снимать
+    bool dynamic_rates;//градация по ставкам
 
 
 public:
-    void setCanCapitalize(bool can)
+    /*void setCanCapitalize(bool can)
     {
         can_capitalize = can;
     }
@@ -51,26 +51,26 @@ public:
     void setDynamRates(bool dynam_rates)
     {
         this->dynam_rates = dynam_rates;
-    }
+    }*/
 
     bool isCanCapitalize()
     {
         return can_capitalize;
     }
 
-    bool isCanAdd()
+    bool isCanSupplement()
     {
-       return  can_add;
+       return  can_supplement;
     }
 
-    bool isCanRemove()
+    bool isCanEarlyClose()
     {
-        return can_remove;
+        return can_early_close;
     }
 
-    bool isDynamRates()
+    bool isDynamicRates()
     {
-        return dynam_rates;
+        return dynamic_rates;
     }
 
     QString& getName()
@@ -83,10 +83,10 @@ public:
         return rates;
     }
 
-    QString& getInfo()
+    /*QString& getInfo()
     {
         return info;
-    }
+    }*/
 
 };
 

@@ -97,7 +97,7 @@ int Date::getDaysToNewYear()
     return (isLeapYear() ? 366 : 365) - days+1;
 }
 
-bool Date::checkMe()
+bool Date::validMe()
 {
     return day >= 1 && day <= (isLeapYear() ? days::DAYS_IN_MOUTH_LEAP[month] : days::DAYS_IN_MOUTH[month])&&month>= 1 && month<=12 && year >= 2014 && year <= 2100;
 }

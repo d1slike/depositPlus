@@ -1,68 +1,68 @@
 #include "deposit.h"
 Money Deposit::calc() // в if добавить ништяков для обработки всего периодов и тд
 {
-    Money cash=sum;
+    Money cash=start_sum;
     cash=0;
-    double rates = templ.getRates().get(sum, day_count, capitalize);
-    if(capitalize&&!replenishment&&!remove)     //только капитализация
-        return cash=calcWithCap(rates,sum.getValue(),day_count).getValue();
-    if(!capitalize&&!replenishment&&!remove)    //без всего
-        return cash=simpleCalc(rates,sum.getValue(),day_count).getValue();
-    if(capitalize&&replenishment&&!remove)//капитализация+добавление
+    double rates = templ.getRates().get(start_sum, day_count, capitalization);
+    if(capitalization&&!supplementation&&!early_closing)     //только капитализация
+        return cash=calcWithCap(rates,start_sum.getValue(),day_count).getValue();
+    if(!capitalization&&!supplementation&&!early_closing)    //без всего
+        return cash=simpleCalc(rates,start_sum.getValue(),day_count).getValue();
+    if(capitalization&&supplementation&&!early_closing)//капитализация+добавление
     {
         int d=day_count/30;
         for(int i=0;i<d;i++)
         {
-            cash=cash+calcWithCap(rates,sum.getValue()+cash.getValue(),30).getValue();//под вопросом
-            sum=sum.getValue()+add_sum.getValue();
+            cash=cash+calcWithCap(rates,start_sum.getValue()+cash.getValue(),30).getValue();//под вопросом
+            start_sum=start_sum.getValue()+supplement_sum.getValue();
         }
         d=day_count%30;
-        return cash=cash+calcWithCap(rates,sum.getValue()+cash.getValue(),d).getValue();//под вопросом
+        return cash=cash+calcWithCap(rates,start_sum.getValue()+cash.getValue(),d).getValue();//под вопросом
     }
-    if(!capitalize&&replenishment&&!remove)//без капитализации+добавление
+    if(!capitalization&&supplementation&&!early_closing)//без капитализации+добавление
     {
         int d=day_count/30;
         for(int i=0;i<d;i++)
         {
-            cash=cash+simpleCalc(rates,sum.getValue(),30).getValue();
-            sum=sum.getValue()+add_sum.getValue();
+            cash=cash+simpleCalc(rates,start_sum.getValue(),30).getValue();
+            start_sum=start_sum.getValue()+supplement_sum.getValue();
         }
         d=day_count%30;
-        return cash=cash+simpleCalc(rates,sum.getValue(),d).getValue();
+        return cash=cash+simpleCalc(rates,start_sum.getValue(),d).getValue();
     }
-    if(capitalize&&!replenishment&&remove)      //снятие с капитализацией
+    if(capitalization&&!supplementation&&early_closing)      //снятие с капитализацией
     {
         int day_remove=close_date-open_date;
-        return cash=calcWithCap(poste_restante,sum.getValue(),day_remove).getValue();
+        return cash=calcWithCap(poste_restante,start_sum.getValue(),day_remove).getValue();
     }
-    if(!capitalize&&!replenishment&&remove)     //снятие без капитализации
+    if(!capitalization&&!supplementation&&early_closing)     //снятие без капитализации
     {
         int day_remove=close_date-open_date;
-        return cash=simpleCalc(poste_restante,sum.getValue(),day_remove).getValue();
+        return cash=simpleCalc(poste_restante,start_sum.getValue(),day_remove).getValue();
     }
-    if(capitalize&&replenishment&&remove)//капитализация+добавление+снятие
+    if(capitalization&&supplementation&&early_closing)//капитализация+добавление+снятие
     {
         int day_remove=close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
-            cash=cash+calcWithCap(poste_restante,sum.getValue()+cash.getValue(),30).getValue();//под вопросом
-            sum=sum.getValue()+add_sum.getValue();
+            cash=cash+calcWithCap(poste_restante,start_sum.getValue()+cash.getValue(),30).getValue();//под вопросом
+            start_sum=start_sum.getValue()+supplement_sum.getValue();
         }
         d=day_count%30;
-        return cash=cash+calcWithCap(poste_restante,sum.getValue()+cash.getValue(),d).getValue();//под вопросом
+        return cash=cash+calcWithCap(poste_restante,start_sum.getValue()+cash.getValue(),d).getValue();//под вопросом
     }
-    if(!capitalize&&replenishment&&remove)//без капитализации+добавление+снятие
+    if(!capitalization&&supplementation&&early_closing)//без капитализации+добавление+снятие
     {
         int day_remove=close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
-            cash=cash+simpleCalc(poste_restante,sum.getValue(),30).getValue();
-            sum=sum.getValue()+add_sum.getValue();
+            cash=cash+simpleCalc(poste_restante,start_sum.getValue(),30).getValue();
+            start_sum=start_sum.getValue()+supplement_sum.getValue();
         }
         d=day_count%30;
-        return cash=cash+simpleCalc(poste_restante,sum.getValue(),d).getValue();
+        return cash=cash+simpleCalc(poste_restante,start_sum.getValue(),d).getValue();
     }
     return cash;
 }
@@ -123,7 +123,7 @@ Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
 
 bool Deposit::validSum()
 {
-    return sum >= templ.getRates().getStartSum(sum);
+    return start_sum >= templ.getRates().getStartSum(start_sum);
 }
 
 bool Deposit::validDate()

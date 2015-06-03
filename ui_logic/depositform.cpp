@@ -11,8 +11,13 @@ DepositForm::DepositForm(QWidget *parent) :
     QRegExp days_exp("[1-9]{1,4}");
     QRegExpValidator* validator = new QRegExpValidator(sum_exp, this);
     ui->start_sum->setValidator(validator);
-    ui->month_add->setValidator(validator);
+    ui->supplement_sum->setValidator(validator);
     ui->day_count->setValidator(new QRegExpValidator(days_exp, this));
+    QStringList list;
+    list.append("RUB");
+    list.append("USD");
+    list.append("EUR");
+    ui->valute_list->addItems(list);
 }
 
 
