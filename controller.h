@@ -9,7 +9,8 @@
 #include "utils/array.h"
 #include "ui_depositform.h"
 #include "ui_mainwindow.h"
-class Controller
+#include <QObject>
+class Controller : QObject
 {
     Q_OBJECT
 
@@ -18,6 +19,9 @@ class Controller
     DepositHolder* holder;
     MainWindow* main_win;
     Array<ProfitResult, 3> results;
+    bool blocked; //флаг запрета на открытие еще одной формы расчета вкладов
+
+    int currentResult; //тукущее поле заполнения
 
     bool valid_start_sum;
     bool valid_date_open;
@@ -25,18 +29,31 @@ class Controller
     bool valid_add_month_sum;
     bool valid_date_remove;
 
+    void validAllConditions();
+    void enableAll();
+
+
 public:
     Controller(){};
     Controller(MainWindow* main, DepositHolder* holder);
 
+
 private slots:
+    void newDepositCalculate();
+
+    void onDestroyDepForm();
+
+    void setRemoveDate();
+    void setCap();
+    void setValute();
+    void setTemplate();
+
     void validStartSum();
     void validDateOpen();
     void validDaysCount();
     void validAddMonthSum();
     void validDateRemove();
 
-    void validAllConditions();
 };
 
 #endif // CONTROLLER_H

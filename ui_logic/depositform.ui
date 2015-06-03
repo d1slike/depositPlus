@@ -138,7 +138,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="deposit_list"/>
+            <widget class="QComboBox" name="deposit_list">
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="insertPolicy">
+              <enum>QComboBox::InsertAtBottom</enum>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>

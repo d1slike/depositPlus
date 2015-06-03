@@ -121,4 +121,14 @@ Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
     return Money(ABSTRACT, value);
 }
 
+bool Deposit::validSum()
+{
+    return sum >= templ.getRates().getStartSum(sum);
+}
+
+bool Deposit::validDate()
+{
+    return close_date > open_date;
+}
+
 

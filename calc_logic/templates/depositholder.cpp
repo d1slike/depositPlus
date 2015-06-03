@@ -13,5 +13,6 @@ DepositHolder::DepositHolder()
     {
         fread(tmp, sizeof(DepositTemplate), 1, file);
         all.insert(std::pair<QString, DepositTemplate>(tmp->getName(), *tmp));
+        list.append(tmp->getName());
     }
 }

@@ -9,6 +9,13 @@ Date::Date(int _day, int _month, int _year)
     year = _year;
 }
 
+Date::Date(const QDate & qd)
+{
+    day = qd.day();
+    month = qd.month();
+    year = qd.year();
+}
+
 int Date::operator-(const Date &date)
 {
     return 1;
@@ -82,5 +89,10 @@ int Date::getDaysToNewYear()
     for(int i = month - 1; i >= 1; i--)
             days+=isLeapYear() ? DAYS_IN_MOUTH_LEAP[i] : DAYS_IN_MOUTH[i];
     return (isLeapYear() ? 366 : 365) - days;
+}
+
+bool Date::checkMe()
+{
+    return day >= 1 && day <= 31 && month>= 1 && month <= (isLeapYear() ? days::DAYS_IN_MOUTH_LEAP[month] : days::DAYS_IN_MOUTH[month]) && year >= 2014 && year <= 2100;
 }
 

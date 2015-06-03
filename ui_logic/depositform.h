@@ -14,11 +14,6 @@ class DepositForm : public QDialog
 public:
     explicit DepositForm(QWidget *parent = 0);
     ~DepositForm();
-    Ui::DepositForm* getUI()
-    {
-        return ui;
-    }
-
 public: // WTF
     Ui::DepositForm *ui;
 

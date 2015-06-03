@@ -31,6 +31,15 @@ public:
         return value;
     }
 
+    void setValute(Valute v)
+    {
+        valute = v;
+    }
+
+    void setValue(m_long v){
+        value = v;
+    }
+
     Money& operator=(m_long value)
     {
         this->value = value;

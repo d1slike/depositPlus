@@ -1,5 +1,8 @@
 #ifndef DATE_H
 #define DATE_H
+
+#include <QDate>
+
 namespace days{
     const static int DAYS_IN_MOUTH[13] = {-1,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//Для удобство январь - 1 ячейка
     const static int DAYS_IN_MOUTH_LEAP[13] = {-1,31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -18,6 +21,7 @@ public:
         year = -1;
     }
     Date(int, int, int);
+    Date (const QDate &);
     int operator-(const Date&);
     bool operator==(const Date &date);
     bool operator>(const Date &date);
@@ -27,7 +31,7 @@ public:
     Date& operator+(int add_days);
     bool isLeapYear();
     int getDaysToNewYear();
-    bool validDate();
+    bool checkMe(); //возвращает ИСТИНУ, если дата соотвествтвует корректному формату
 
     int getDay()
     {
