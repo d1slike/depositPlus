@@ -21,7 +21,7 @@ Money Deposit::calc() // в if добавить ништяков для обра
         {
             cash=cash+calcWithCap(rates,start_sum.getValue()+cash.getValue(),30).getValue();//под вопросом
             start_sum=start_sum.getValue()+supplement_sum.getValue();
-            if(dynamic_rates)
+            if(templ.isDynamicRates())
                 rates = templ.getRates().get(start_sum, day_count, capitalization);
         }
         d=day_count%30;
@@ -34,7 +34,7 @@ Money Deposit::calc() // в if добавить ништяков для обра
         {
             cash=cash+simpleCalc(rates,start_sum.getValue(),30).getValue();
             start_sum=start_sum.getValue()+supplement_sum.getValue();
-            if(dynamic_rates)
+            if(templ.isDynamicRates())
                 rates = templ.getRates().get(start_sum, day_count, capitalization);
         }
         d=day_count%30;

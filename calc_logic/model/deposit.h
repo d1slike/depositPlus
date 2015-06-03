@@ -20,7 +20,6 @@ class Deposit
     Date open_date;
     Date close_date;
     int day_count;
-    bool dynamic_rates;
     bool supplementation;//флаг ежемесячного пополнения вклада
     bool capitalization;//флаг капитализации
     bool early_closing;//флаг досрочного снятия
