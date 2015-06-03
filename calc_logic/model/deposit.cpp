@@ -1,4 +1,10 @@
 #include "deposit.h"
+ProfitResult Deposit::getProfit()
+{
+    Money profit=calc();
+    ProfitResult result(open_date,start_sum.getValue()+profit.getValue(),profit.getValue());
+    return result;
+}
 Money Deposit::calc() // в if добавить ништяков для обработки всего периодов и тд
 {
     Money cash=start_sum;
@@ -15,6 +21,8 @@ Money Deposit::calc() // в if добавить ништяков для обра
         {
             cash=cash+calcWithCap(rates,start_sum.getValue()+cash.getValue(),30).getValue();//под вопросом
             start_sum=start_sum.getValue()+supplement_sum.getValue();
+            if(dynamic_rates)
+                rates = templ.getRates().get(start_sum, day_count, capitalization);
         }
         d=day_count%30;
         return cash=cash+calcWithCap(rates,start_sum.getValue()+cash.getValue(),d).getValue();//под вопросом
@@ -26,6 +34,8 @@ Money Deposit::calc() // в if добавить ништяков для обра
         {
             cash=cash+simpleCalc(rates,start_sum.getValue(),30).getValue();
             start_sum=start_sum.getValue()+supplement_sum.getValue();
+            if(dynamic_rates)
+                rates = templ.getRates().get(start_sum, day_count, capitalization);
         }
         d=day_count%30;
         return cash=cash+simpleCalc(rates,start_sum.getValue(),d).getValue();

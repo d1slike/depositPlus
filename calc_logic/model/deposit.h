@@ -6,6 +6,7 @@
 #include "date.h"
 #include "money.h"
 #include "math.h"
+#include "profitresult.h"
 
 #define poste_restante 0.01 // ставка вклада до востребования
 
@@ -19,14 +20,16 @@ class Deposit
     Date open_date;
     Date close_date;
     int day_count;
+    bool dynamic_rates;
     bool supplementation;//флаг ежемесячного пополнения вклада
     bool capitalization;//флаг капитализации
     bool early_closing;//флаг досрочного снятия
-public:
-
-    Money calc();
     Money calcWithCap(double, m_long ,int);
     Money simpleCalc(double, m_long ,int);
+    Money calc();
+public:
+
+    ProfitResult getProfit();
 
     bool validSum(); //сранивает минимальную сумму для открытия вклада из шаблона и текущую сумму
     bool validDate(); //сравнивает минимальное кол-во дней для открытия вклада и текущее положение
