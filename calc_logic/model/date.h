@@ -22,7 +22,7 @@ public:
     }
     Date(int, int, int);
     Date (const QDate &);
-    int operator-(const Date&);
+    int operator-(Date&);//реализация через getDaysToNewYear()
     bool operator==(const Date &date);
     bool operator>(const Date &date);
     bool operator<(const Date &date);

@@ -32,17 +32,17 @@ Money Deposit::calc() // в if добавить ништяков для обра
     }
     if(capitalize&&!replenishment&&remove)      //снятие с капитализацией
     {
-        int day_remove=open_date-close_date;
+        int day_remove=close_date-open_date;
         return cash=calcWithCap(poste_restante,sum.getValue(),day_remove).getValue();
     }
     if(!capitalize&&!replenishment&&remove)     //снятие без капитализации
     {
-        int day_remove=open_date-close_date;
+        int day_remove=close_date-open_date;
         return cash=simpleCalc(poste_restante,sum.getValue(),day_remove).getValue();
     }
     if(capitalize&&replenishment&&remove)//капитализация+добавление+снятие
     {
-        int day_remove=open_date-close_date;
+        int day_remove=close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
@@ -54,7 +54,7 @@ Money Deposit::calc() // в if добавить ништяков для обра
     }
     if(!capitalize&&replenishment&&remove)//без капитализации+добавление+снятие
     {
-        int day_remove=open_date-close_date;
+        int day_remove=close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
@@ -79,7 +79,7 @@ Money Deposit::calcWithCap(double rates, m_long startsum,int day)
         {
             D_i=day_to_ny/30.;
             persent_coef=(1+rates*30./((open_date.isLeapYear()? 366. : 365.)*100.));
-            value=value+startsum*pow(persent_coef,D_i)-startsum;
+            value=(value+startsum)*pow(persent_coef,D_i)-startsum;
             open_date=open_date+day_to_ny;
             day=day-day_to_ny;
         }
@@ -88,7 +88,7 @@ Money Deposit::calcWithCap(double rates, m_long startsum,int day)
         {
             D_i=day/30.;
             persent_coef=(1.+rates*30./((open_date.isLeapYear()?366.:365.)*100.));
-            value=value+startsum*pow(persent_coef,D_i)-startsum;
+            value=(value+startsum)*pow(persent_coef,D_i)-startsum;
             open_date=open_date+day;
             day=0;
         }
@@ -105,7 +105,7 @@ Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
         day_to_ny=open_date.getDaysToNewYear();
         if(day>=day_to_ny&&day!=0)
         {
-            value=value+startsum*rates*day/((open_date.isLeapYear()?366.:365.)*100.);
+            value=value+startsum*rates*day_to_ny/((open_date.isLeapYear()?366.:365.)*100.);
             open_date=open_date+day_to_ny;
             day=day-day_to_ny;
         }
