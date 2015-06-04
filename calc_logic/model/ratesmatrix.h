@@ -54,9 +54,8 @@ public:
         this->eur_rates = eur_rates;
     }
 
-    int getMinimalDay(Money &m);
-
-    m_long getStartSum(const Money& m);
+    int getMinDay(const Money& m);
+    m_long getMinSum(Valute v);
     void get(const Money& m, int day, bool withCap, double* rates, int* startDays);
     double get(const Money& m, int day, bool withCap);
 };

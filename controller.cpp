@@ -94,7 +94,7 @@ void Controller::newDepositCalculate()
     connect(dep_win->ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
     connect(dep_win->ui->start_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
     connect(dep_win->ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
-    connect(dep_win->ui->deposit_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setTemplate()));
+    connect(dep_win->ui->deposit_list, SIGNAL(currentIndexChanged(QString)), this, SLOT(setTemplate()));
     connect(dep_win->ui->valute_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setValute()));
     connect(dep_win->ui->supplement_flag, SIGNAL(clicked(bool)), this, SLOT(setSupplementationFlag()));
     connect(dep_win->ui->supplement_sum, SIGNAL(textChanged(QString)), this, SLOT(validSupplementSum()));
@@ -208,7 +208,7 @@ void Controller::validEarlyCloseDate()
         Date d(dep_win->ui->early_close_date->date());
         valid_close_date = d.validMe();
         if(valid_close_date)
-            dep->setCloseDate(d);
+            dep->setEarlyCloseDate(d);
         validAllConditions();
     }
 

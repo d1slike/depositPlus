@@ -23,9 +23,9 @@ double RatesMatrix::get(const Money& m, int day, bool isCap)
     return 0;
 }
 
-m_long RatesMatrix::getStartSum(const Money &m)
+m_long RatesMatrix::getMinSum(Valute v)
 {
-    switch (m.getValute()) {
+    switch (v) {
     case RUB:
         return rub_rates[0].getSum();
         break;
@@ -65,7 +65,7 @@ RateSet& RatesMatrix::getSuitRates(const Money& m)//TODO обработать м
     return rub_rates[0]; //TODO избавиться от этого
 }
 
-int RatesMatrix::getMinimalDay(Money &m)
+int RatesMatrix::getMinDay(const Money &m)
 {
     RateSet tmp = getSuitRates(m);
     return tmp.section_day[0];

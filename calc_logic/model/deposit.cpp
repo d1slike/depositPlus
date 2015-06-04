@@ -42,17 +42,17 @@ Money Deposit::calc() // в if добавить ништяков для обра
     }
     if(capitalization&&!supplementation&&early_closing)      //снятие с капитализацией
     {
-        int day_remove=close_date-open_date;
+        int day_remove=early_close_date-open_date;
         return cash=calcWithCap(poste_restante,start_sum.getValue(),day_remove).getValue();
     }
     if(!capitalization&&!supplementation&&early_closing)     //снятие без капитализации
     {
-        int day_remove=close_date-open_date;
+        int day_remove=early_close_date-open_date;
         return cash=simpleCalc(poste_restante,start_sum.getValue(),day_remove).getValue();
     }
     if(capitalization&&supplementation&&early_closing)//капитализация+добавление+снятие
     {
-        int day_remove=close_date-open_date;
+        int day_remove=early_close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
@@ -64,7 +64,7 @@ Money Deposit::calc() // в if добавить ништяков для обра
     }
     if(!capitalization&&supplementation&&early_closing)//без капитализации+добавление+снятие
     {
-        int day_remove=close_date-open_date;
+        int day_remove=early_close_date-open_date;
         int d=day_remove/30;
         for(int i=0;i<d;i++)
         {
@@ -133,17 +133,17 @@ Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
 
 bool Deposit::validSum()
 {
-    return start_sum.getValue() >= templ.getRates().getStartSum(start_sum);
+    return start_sum >= templ.getRates().getMinSum(start_sum.getValute());
 }
 
 bool Deposit::validDate()
 {
-    return close_date > open_date;
+    return early_close_date > open_date;
 }
 
 bool Deposit::validDayCount()
 {
-    return day_count >= templ.getRates().getMinimalDay(start_sum);
+    return day_count >= templ.getRates().getMinDay(start_sum);
 }
 
 

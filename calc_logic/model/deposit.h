@@ -18,7 +18,7 @@ class Deposit
     Money start_sum;
     Money supplement_sum;
     Date open_date;
-    Date close_date;
+    Date early_close_date;
     int day_count;
     bool supplementation;//флаг ежемесячного пополнения вклада
     bool capitalization;//флаг капитализации
@@ -34,7 +34,7 @@ public:
         start_sum = 0;
         supplement_sum = 0;
         open_date = Date();
-        close_date = Date();
+        early_close_date = Date();
         day_count = 0;
         supplementation = capitalization = early_closing = false;
     }
@@ -64,9 +64,9 @@ public:
         open_date = od;
     }
 
-    void setCloseDate(Date &cd)
+    void setEarlyCloseDate(Date &cd)
     {
-        close_date = cd;
+        early_close_date = cd;
     }
 
     void setDayCount(int i)
@@ -104,9 +104,9 @@ public:
         return open_date;
     }
 
-    Date getCloseDate()
+    Date getEarlyCloseDate()
     {
-        return close_date;
+        return early_close_date;
     }
 
     int getDayCount()
