@@ -8,7 +8,7 @@ DepositForm::DepositForm(QWidget *parent) :
     ui->setupUi(this);
 
     QRegExp sum_exp("[1-9]{1}[0-9]{0,9}");
-    QRegExp days_exp("[1-9]{1,4}");
+    QRegExp days_exp("[1-9]{1}[0-9]{0,3}");
     QRegExpValidator* validator = new QRegExpValidator(sum_exp, this);
     ui->start_sum->setValidator(validator);
     ui->supplement_sum->setValidator(validator);

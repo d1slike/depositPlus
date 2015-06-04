@@ -9,8 +9,8 @@ ProfitResult::ProfitResult(Date& remove_date, m_long sum, m_long profit)
 
 QString ProfitResult::toString()
 {
-    QString s = "Дата закрытия вклада: " + close_date.toString() + "<br>";
-    s+= "Сумма на момент закрытия: " + QString::number(sum) + "<br>";
+    QString s = "Дата закрытия вклада: " + close_date.toString() + "\n";
+    s+= "Сумма на момент закрытия: " + QString::number(sum) + "\n";
     s+= "Прибыль: "+ QString::number(profit);
     return s;
 }

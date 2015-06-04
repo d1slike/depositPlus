@@ -105,12 +105,12 @@ public:
         return supplement_sum;
     }
 
-    Date& getOpenDate()
+    Date getOpenDate()
     {
         return open_date;
     }
 
-    Date& getCloseDate()
+    Date getCloseDate()
     {
         return close_date;
     }

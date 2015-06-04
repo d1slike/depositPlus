@@ -8,6 +8,7 @@ DepositHolder::DepositHolder()
 {
 
         QString name;
+        count = 1;
         for(int i = 0; i < 10; i++)
             name[i] = NAME_vig[i];
         Array<RateSet, 3> rub_rates;
@@ -84,6 +85,7 @@ DepositHolder::DepositHolder()
 
         all[0] = tmp;
         names[0] = tmp.getName();
+
 
 
     /*ifstream file("data.dat", ios::in | ios::binary);
