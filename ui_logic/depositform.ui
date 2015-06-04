@@ -47,7 +47,7 @@
        <string>Поля для заполнения</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
+       <item row="0" column="0">
         <widget class="QFrame" name="frame">
          <property name="frameShape">
           <enum>QFrame::Box</enum>
@@ -82,14 +82,14 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="start_date_label">
+            <widget class="QLabel" name="open_date_label">
              <property name="text">
               <string>Дата открытия</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="start_date">
+            <widget class="QDateEdit" name="open_date">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -121,38 +121,6 @@
              </property>
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>11</y>
-            <width>146</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QLabel" name="deposit_list_label">
-             <property name="text">
-              <string>Вклад</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="deposit_list">
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="editable">
-              <bool>false</bool>
-             </property>
-             <property name="insertPolicy">
-              <enum>QComboBox::InsertAtBottom</enum>
              </property>
             </widget>
            </item>
@@ -302,6 +270,47 @@
             </widget>
            </item>
           </layout>
+         </widget>
+         <widget class="QLabel" name="deposit_list_label">
+          <property name="geometry">
+           <rect>
+            <x>13</x>
+            <y>11</y>
+            <width>43</width>
+            <height>19</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Вклад</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="deposit_list">
+          <property name="geometry">
+           <rect>
+            <x>73</x>
+            <y>11</y>
+            <width>141</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <property name="currentText">
+           <string/>
+          </property>
+          <property name="currentIndex">
+           <number>-1</number>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::InsertAfterCurrent</enum>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
          </widget>
         </widget>
        </item>

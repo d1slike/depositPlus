@@ -18,6 +18,8 @@ DepositForm::DepositForm(QWidget *parent) :
     list.append("USD");
     list.append("EUR");
     ui->valute_list->addItems(list);
+    ui->open_date->setDate(QDate::currentDate());
+    ui->early_close_date->setDate(QDate::currentDate());
 
 }
 

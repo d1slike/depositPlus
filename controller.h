@@ -15,8 +15,8 @@ class Controller : QObject
 {
     Q_OBJECT
 
-    QPalette DEFAULT;
-    QPalette MAX;
+    //QPalette DEFAULT;
+    //QPalette MAX;
 
     Deposit* dep;
     DepositHolder* holder;
@@ -24,10 +24,10 @@ class Controller : QObject
     MainWindow* main_win;
 
     bool blocked; //флаг запрета на открытие еще одной формы расчета вкладов
-    Array<ProfitResult, 3> results;
-    Array<bool, 3> results_field_free;
+    //Array<ProfitResult, 3> results;
+    //Array<bool, 3> results_field_free;
     int currentResult; //тукущее поле заполнения
-    int results_count;
+    //int results_count;
 
     bool valid_start_sum;
     bool valid_open_date;
@@ -35,9 +35,9 @@ class Controller : QObject
     bool valid_days_count;
     bool valid_supplement_sum;
 
-    inline void validAllConditions();
+    void validAllConditions();
     void newDepositCalculate();
-    void enableAll();
+    void enableAll(bool isTemp);
 
 
 public:
