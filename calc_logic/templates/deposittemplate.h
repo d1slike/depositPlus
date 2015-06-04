@@ -18,19 +18,19 @@ class DepositTemplate{
 
 
 public:
-    /*void setCanCapitalize(bool can)
+    void setCanCapitalize(bool can)
     {
         can_capitalize = can;
     }
 
     void setCanAdd(bool can)
     {
-        can_add = can;
+        can_supplement = can;
     }
 
     void setCanRemove(bool can)
     {
-        can_remove = can;
+        can_early_close = can;
     }
 
     void setName(const QString &name)
@@ -43,15 +43,15 @@ public:
         this->rates = rates;
     }
 
-    void setInfo(const QString &info)
+    /*void setInfo(const QString &info)
     {
         this->info = info;
-    }
+    }*/
 
     void setDynamRates(bool dynam_rates)
     {
-        this->dynam_rates = dynam_rates;
-    }*/
+        dynamic_rates = dynam_rates;
+    }
 
     bool isCanCapitalize()
     {
