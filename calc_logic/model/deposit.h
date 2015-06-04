@@ -23,10 +23,21 @@ class Deposit
     bool supplementation;//флаг ежемесячного пополнения вклада
     bool capitalization;//флаг капитализации
     bool early_closing;//флаг досрочного снятия
+
     Money calcWithCap(double, m_long ,int);
     Money simpleCalc(double, m_long ,int);
     Money calc();
 public:
+
+    Deposit()
+    {
+        start_sum = 0;
+        supplement_sum = 0;
+        open_date = Date();
+        close_date = Date();
+        day_count = 0;
+        supplementation = capitalization = early_closing = false;
+    }
 
     ProfitResult getProfit();
 

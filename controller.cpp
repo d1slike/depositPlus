@@ -99,7 +99,8 @@ void Controller::newDepositCalculate()
     connect(dep_win->ui->early_close_date_flag, SIGNAL(clicked(bool)), this, SLOT(setEarlyClosingDateFlag()));
     connect(dep_win->ui->do_calc_button, SIGNAL(clicked(bool)), this, SLOT(calculate()));
 
-    dep_win->ui->deposit_list->addItems(holder->getNames());
+    for(int i = 0; i < holder->getCount(); i++)
+        dep_ui->deposit_list->addItem(holder->getName(i));
     blocked = true;
     dep_win->show();
 
@@ -140,7 +141,7 @@ void Controller::setValute()
 
 void Controller::setTemplate()
 {
-    dep->setTemplate(holder->getTemplByName(dep_win->ui->deposit_list->currentText()));
+    dep->setTemplate(holder->getTempl(dep_win->ui->deposit_list->currentIndex()));
     enableAll();
 }
 

@@ -73,12 +73,12 @@ public:
         return dynamic_rates;
     }
 
-    QString& getName()
+    QString getName()
     {
         return name;
     }
 
-    RatesMatrix& getRates()
+    RatesMatrix getRates()
     {
         return rates;
     }

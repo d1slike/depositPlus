@@ -11,7 +11,10 @@ class Money
     Valute valute;
     m_long value;
 public:
-    Money(){}
+    Money(){
+        valute = ABSTRACT;
+        value = 0;
+    }
     Money(m_long value)
     {
         this->value = value;

@@ -3,29 +3,29 @@
 
 #include "deposittemplate.h"
 #include <QStringList>
-#include <map>
+
 
 class DepositHolder
 {
-    std::map<QString, DepositTemplate> all;
-    QStringList list;
+    Array<DepositTemplate, 10> all;
+    Array<QString, 10> names;
+    int count;
 public:
     DepositHolder();//TODO реализовать загрузку из dat
-    DepositTemplate getTemplByName(const QString &name){
-        if(all.count(name) > 0)
-            return all[name];
-
+    DepositTemplate getTempl(int pos){
+            return all[pos];
     }
 
-    ~DepositHolder()
+    int getCount()
     {
-        all.clear();
+        return count;
     }
 
-    QStringList& getNames()
+    QString& getName(int pos)
     {
-        return list;
+        return names[pos];
     }
+
 };
 
 #endif
