@@ -11,6 +11,13 @@
 #include "utils/array.h"
 #include "ui_depositform.h"
 #include "ui_mainwindow.h"
+
+namespace constants {
+    static const QString NOT_SUIT_SUM = "* минимальная сумма %1";
+    static const QString NOT_SUIT_DAY = "* минимальное количество дней %1";
+    static const QString NOT_SUIT_DATE ="* неверный формат";
+}
+
 class Controller : QObject
 {
     Q_OBJECT
@@ -22,6 +29,8 @@ class Controller : QObject
     DepositHolder* holder;
     DepositForm* dep_win;
     MainWindow* main_win;
+
+
 
     bool blocked; //флаг запрета на открытие еще одной формы расчета вкладов
     //Array<ProfitResult, 3> results;
@@ -38,6 +47,7 @@ class Controller : QObject
     void validAllConditions();
     void newDepositCalculate();
     void enableAll(bool isTemp);
+    void resetMinimalConditions();
 
 
 public:
@@ -59,7 +69,7 @@ private slots:
     void setCapitalisationFlag();
     void setSupplementationFlag();
     void setValute();
-    void setTemplate();
+    void setTemplate(int);
 
     void validStartSum();
     void validDateOpen();

@@ -95,11 +95,17 @@ void Controller::newDepositCalculate()
     for(int i = 0; i < holder->getCount(); i++)
         dep_ui->deposit_list->addItem(holder->getName(i));
     dep_ui->deposit_list->setCurrentIndex(0);
+
+    dep_ui->wrong_data->setText(constants::NOT_SUIT_DATE);
+    dep_ui->wrong_data->setVisible(false);
+    dep_ui->min_day_count->setVisible(false);
+    dep_ui->min_start_sum->setVisible(false);
+
     connect(dep_win, SIGNAL(finished(int)), this, SLOT(onClosingDepWindow()));
     connect(dep_ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
     connect(dep_ui->open_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
     connect(dep_ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
-    connect(dep_ui->deposit_list, SIGNAL(currentIndexChanged(QString)), this, SLOT(setTemplate()));
+    connect(dep_ui->deposit_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setTemplate(int)));
     connect(dep_ui->valute_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setValute()));
     connect(dep_ui->supplement_flag, SIGNAL(clicked(bool)), this, SLOT(setSupplementationFlag()));
     connect(dep_ui->supplement_sum, SIGNAL(textChanged(QString)), this, SLOT(validSupplementSum()));
@@ -157,14 +163,19 @@ void Controller::setValute()
         dep->getSupplementSum().setValute(EUR);
         break;
     }
+    resetMinimalConditions();
     validStartSum();
 }
 
-void Controller::setTemplate()
+void Controller::setTemplate(int index)
 {
-    bool isTemp = dep_ui->deposit_list->currentIndex() > 0;
+    bool isTemp = index > -1;
+
     if(isTemp)
-        dep->setTemplate(holder->getTempl(dep_ui->deposit_list->currentIndex()));
+    {
+        dep->setTemplate(holder->getTempl(index));
+        resetMinimalConditions();
+    }
     enableAll(isTemp);
 }
 
@@ -174,6 +185,7 @@ void Controller::validStartSum()
     if(valid_start_sum)
         dep->getStartSum().setValue(dep_ui->start_sum->text().toInt());
     valid_start_sum = valid_start_sum && dep->validSum();
+    dep_ui->min_start_sum->setVisible(!valid_start_sum);
     validAllConditions();
 }
 
@@ -183,6 +195,7 @@ void Controller::validDateOpen()
     valid_open_date = d.validMe();
     if(valid_open_date)
         dep->setOpenDate(d);
+    dep_ui->wrong_data->setVisible(!valid_open_date);
     validAllConditions();
 }
 
@@ -190,11 +203,9 @@ void Controller::validDaysCount()
 {
     valid_days_count = dep_ui->day_count->hasAcceptableInput();
     if(valid_days_count)
-    {
         dep->setDayCount(dep_ui->day_count->text().toInt());
-    }
     valid_days_count = valid_days_count && dep->validDayCount();
-    //valid_close_date = valid_days_count;
+    dep_ui->min_day_count->setVisible(!valid_days_count);
     validAllConditions();
 }
 
@@ -294,12 +305,18 @@ void Controller::validAllConditions()
 void Controller::enableAll(bool isTemp)
 {
 
-    Ui::DepositForm* ui = dep_ui;
-    ui->day_count->setEnabled(isTemp);
-    ui->capitalisation_flag->setEnabled(isTemp ? dep->getTempl().isCanCapitalize() : isTemp);
-    ui->valute_list->setEnabled(isTemp);
-    ui->start_sum->setEnabled(isTemp);
-    ui->open_date->setEnabled(isTemp);
-    ui->supplement_flag->setEnabled(isTemp ? dep->getTempl().isCanSupplement() : isTemp);
-    ui->early_close_date_flag->setEnabled(isTemp ? dep->getTempl().isCanEarlyClose() : isTemp);
+    dep_ui->day_count->setEnabled(isTemp);
+    dep_ui->capitalisation_flag->setEnabled(isTemp ? dep->getTempl().isCanCapitalize() : isTemp);
+    dep_ui->valute_list->setEnabled(isTemp);
+    dep_ui->start_sum->setEnabled(isTemp);
+    dep_ui->open_date->setEnabled(isTemp);
+    dep_ui->supplement_flag->setEnabled(isTemp ? dep->getTempl().isCanSupplement() : isTemp);
+    dep_ui->early_close_date_flag->setEnabled(isTemp ? dep->getTempl().isCanEarlyClose() : isTemp);
+}
+
+void Controller::resetMinimalConditions()
+{
+    dep_ui->min_start_sum->setText(constants::NOT_SUIT_SUM.arg(QString::number(dep->getTempl().getRates().getMinSum(dep->getStartSum().getValute()))));//
+    dep_ui->min_day_count->setText(constants::NOT_SUIT_DAY.arg(QString::number(dep->getTempl().getRates().getMinDay(dep->getStartSum()))));// TODO это провал
+
 }

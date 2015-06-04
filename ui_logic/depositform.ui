@@ -31,268 +31,70 @@
   <property name="modal">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QPushButton" name="do_calc_button">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>350</y>
+     <width>112</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Рассчитать</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
+     <y>10</y>
      <width>581</width>
      <height>341</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Поля для заполнения</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QFrame" name="frame">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Sunken</enum>
-         </property>
-         <widget class="QCheckBox" name="capitalisation_flag">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>207</y>
-            <width>151</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Капитализация</string>
-          </property>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>95</y>
-            <width>230</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="open_date_label">
-             <property name="text">
-              <string>Дата открытия</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDateEdit" name="open_date">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>39</y>
-            <width>157</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLabel" name="valute_list_label">
-             <property name="text">
-              <string>Валюта</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="valute_list">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>179</y>
-            <width>502</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <item>
-            <widget class="QCheckBox" name="early_close_date_flag">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Досрочное снятие</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="Line" name="line">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="early_close_date_label">
-             <property name="text">
-              <string>Дата досрочного снятия</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDateEdit" name="early_close_date">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>123</y>
-            <width>456</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="day_count_label">
-             <property name="text">
-              <string>Количество дней</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="day_count">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="day_count_min">
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#ff0000;&quot;&gt;Минимальное количество дней :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>151</y>
-            <width>503</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QCheckBox" name="supplement_flag">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Ежемесячное пополнение</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="supplement_sum_label">
-             <property name="text">
-              <string>Сумма</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="supplement_sum">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>11</x>
-            <y>67</y>
-            <width>491</width>
-            <height>27</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_start_sum">
-             <property name="text">
-              <string>Начальная сумма</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="start_sum">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="min_start_sum">
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#ff0000;&quot;&gt;Минимальная начальная сумма: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+   <property name="title">
+    <string>Поля для заполнения</string>
+   </property>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>571</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>566</width>
+       <height>277</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
          <widget class="QLabel" name="deposit_list_label">
-          <property name="geometry">
-           <rect>
-            <x>13</x>
-            <y>11</y>
-            <width>43</width>
-            <height>19</height>
-           </rect>
-          </property>
           <property name="text">
            <string>Вклад</string>
           </property>
          </widget>
+        </item>
+        <item>
          <widget class="QComboBox" name="deposit_list">
-          <property name="geometry">
-           <rect>
-            <x>73</x>
-            <y>11</y>
-            <width>141</width>
-            <height>25</height>
-           </rect>
-          </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -312,23 +114,422 @@
            <bool>true</bool>
           </property>
          </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="do_calc_button">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Рассчитать</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="valute_list_label">
+          <property name="text">
+           <string>Валюта</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="valute_list">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_start_sum">
+          <property name="text">
+           <string>Начальная сумма</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="start_sum">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>150</horstretch>
+            <verstretch>25</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="min_start_sum">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>250</horstretch>
+            <verstretch>25</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="open_date_label">
+          <property name="text">
+           <string>Дата открытия</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="open_date">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>109</horstretch>
+            <verstretch>25</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>109</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>109</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="wrong_data">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>200</horstretch>
+            <verstretch>20</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="day_count_label">
+          <property name="text">
+           <string>Количество дней</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="day_count">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="min_day_count">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>*</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QCheckBox" name="supplement_flag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Ежемесячное пополнение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="supplement_sum_label">
+          <property name="text">
+           <string>Сумма</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="supplement_sum">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>200</horstretch>
+            <verstretch>25</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QCheckBox" name="early_close_date_flag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Досрочное снятие</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="early_close_date_label">
+          <property name="text">
+           <string>Дата досрочного снятия</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="early_close_date">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>109</horstretch>
+            <verstretch>25</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="capitalisation_flag">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Капитализация</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>do_calc_button</zorder>
+  <zorder>groupBox</zorder>
  </widget>
  <resources/>
  <connections/>
