@@ -9,7 +9,7 @@ Money Deposit::calc() // в if добавить ништяков для обра
 {
     Money cash=start_sum;
     cash=0;
-    double rates = templ.getRates().get(start_sum, day_count, capitalization);
+    double rates =templ.getRates().get(start_sum, day_count, capitalization);
     if(capitalization&&!supplementation&&!early_closing)     //только капитализация
         return cash=calcWithCap(rates,start_sum.getValue(),day_count).getValue();
     if(!capitalization&&!supplementation&&!early_closing)    //без всего
@@ -133,12 +133,17 @@ Money Deposit::simpleCalc(double rates, m_long  startsum, int day)
 
 bool Deposit::validSum()
 {
-    return start_sum >= templ.getRates().getStartSum(start_sum);
+    return start_sum.getValue() >= templ.getRates().getStartSum(start_sum);
 }
 
 bool Deposit::validDate()
 {
     return close_date > open_date;
+}
+
+bool Deposit::validDayCount()
+{
+    return day_count >= templ.getRates().getMinimalDay(start_sum);
 }
 
 

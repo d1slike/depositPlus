@@ -18,6 +18,7 @@ DepositForm::DepositForm(QWidget *parent) :
     list.append("USD");
     list.append("EUR");
     ui->valute_list->addItems(list);
+
 }
 
 

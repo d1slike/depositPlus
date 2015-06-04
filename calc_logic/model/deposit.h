@@ -43,7 +43,7 @@ public:
 
     bool validSum(); //сранивает минимальную сумму для открытия вклада из шаблона и текущую сумму
     bool validDate(); //сравнивает минимальное кол-во дней для открытия вклада и текущее положение
-
+    bool validDayCount();
     void setTemplate(DepositTemplate& temp)
     {
         templ = temp;
@@ -69,15 +69,9 @@ public:
         close_date = cd;
     }
 
-    void setDayCount()
-    {
-        day_count = open_date - close_date;
-    }
-
     void setDayCount(int i)
     {
         day_count = i;
-        close_date = open_date + day_count;
     }
 
     void setSupplementation(bool b)

@@ -23,9 +23,9 @@ DepositHolder::DepositHolder()
             sum=SUM_RUB[i];
             for(int j = 0,k=0; j < 6; j++,k+=2)
             {
-                section_day[i]=DAY_COUNT[j];
-                base_rates[i]=RATES_RUB_vig[i*k];
-                effective_rates[i]=RATES_RUB_vig[i*k+1];
+                section_day[j]=DAY_COUNT[j];
+                base_rates[j]=RATES_RUB_vig[(i+1)*k];
+                effective_rates[j]=RATES_RUB_vig[(i+1)*k+1];
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             rub_rates[i] = tmp;
@@ -39,9 +39,9 @@ DepositHolder::DepositHolder()
             sum=SUM_INTER[i];
             for(int j = 0,k=0; j < 6; j++,k+=2)
             {
-                section_day[i]=DAY_COUNT[j];
-                base_rates[i]=RATES_USD_vig[i*k];
-                effective_rates[i]=RATES_USD_vig[i*k+1];
+                section_day[j]=DAY_COUNT[j];
+                base_rates[j]=RATES_USD_vig[(i+1)*k];
+                effective_rates[j]=RATES_USD_vig[(i+1)*k+1];
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             usd_rates[i] = tmp;
@@ -55,9 +55,9 @@ DepositHolder::DepositHolder()
             sum=SUM_INTER[i];
             for(int j = 0,k=0; j < 6; j++,k+=2)
             {
-                section_day[i]=DAY_COUNT[j];
-                base_rates[i]=RATES_EUR_vig[i*k];
-                effective_rates[i]=RATES_EUR_vig[i*k+1];
+                section_day[j]=DAY_COUNT[j];
+                base_rates[j]=RATES_EUR_vig[(i+1)*k];
+                effective_rates[j]=RATES_EUR_vig[(i+1)*k+1];
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             eur_rates[i] = tmp;
@@ -71,8 +71,8 @@ DepositHolder::DepositHolder()
         bool dynam_rates;//градация по ставкам
         can_capitalize=true;
         can_add=true;
-        can_remove=false;
-        dynam_rates=true;
+        can_remove=true;
+        dynam_rates=false;
 
         DepositTemplate tmp;
         tmp.setName(name);

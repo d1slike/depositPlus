@@ -89,12 +89,13 @@ void Controller::newDepositCalculate()
 {
     dep = new Deposit;
     dep_win = new DepositForm(main_win);
+    valid_close_date = valid_days_count = valid_open_date = valid_start_sum = valid_supplement_sum = false;
     connect(dep_win, SIGNAL(finished(int)), this, SLOT(onClosingDepWindow()));
     connect(dep_win->ui->start_sum, SIGNAL(textChanged(QString)), this, SLOT(validStartSum()));
     connect(dep_win->ui->start_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
     connect(dep_win->ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
     connect(dep_win->ui->deposit_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setTemplate()));
-    connect(dep_win->ui->valute_list, SIGNAL(editTextChanged(QString)), this, SLOT(setValute()));
+    connect(dep_win->ui->valute_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setValute()));
     connect(dep_win->ui->supplement_flag, SIGNAL(clicked(bool)), this, SLOT(setSupplementationFlag()));
     connect(dep_win->ui->supplement_sum, SIGNAL(textChanged(QString)), this, SLOT(validSupplementSum()));
     connect(dep_win->ui->capitalisation_flag, SIGNAL(clicked(bool)), this, SLOT(setCapitalisationFlag()));
@@ -105,6 +106,7 @@ void Controller::newDepositCalculate()
     for(int i = 0; i < holder->getCount(); i++)
         dep_ui->deposit_list->addItem(holder->getName(i));
     blocked = true;
+    dep_ui->valute_list->currentIndexChanged(0);
     dep_win->show();
 
 }
@@ -139,15 +141,20 @@ void Controller::setValute()
 {
     switch(dep_win->ui->valute_list->currentIndex())
     {
-    case 0: dep->getStartSum().setValute(RUB);
-        dep->getSupplementSum().setValute(RUB); break;
+    case 0:
+        dep->getStartSum().setValute(RUB);
+        dep->getSupplementSum().setValute(RUB);
+        break;
     case 1:
         dep->getStartSum().setValute(USD);
-        dep->getSupplementSum().setValute(USD);break;
+        dep->getSupplementSum().setValute(USD);
+        break;
     case 2:
         dep->getStartSum().setValute(EUR);
-        dep->getSupplementSum().setValute(EUR);break;
+        dep->getSupplementSum().setValute(EUR);
+        break;
     }
+    validStartSum();
 }
 
 void Controller::setTemplate()
@@ -179,13 +186,10 @@ void Controller::validDaysCount()
     valid_days_count = dep_win->ui->day_count->hasAcceptableInput();
     if(valid_days_count)
     {
-            dep->setDayCount(dep_win->ui->day_count->text().toInt());
-            Date close = dep->getOpenDate();
-            close = close + dep->getDayCount();
-            dep->setCloseDate(close);
+        dep->setDayCount(dep_win->ui->day_count->text().toInt());
     }
-    valid_days_count = valid_days_count && dep->validDate();
-    valid_close_date = valid_days_count;
+    valid_days_count = valid_days_count && dep->validDayCount();
+    //valid_close_date = valid_days_count;
     validAllConditions();
 }
 
@@ -199,22 +203,20 @@ void Controller::validSupplementSum()
 
 void Controller::validEarlyCloseDate()
 {
-    if(dep_win->ui->early_close_date->isEnabled())
+    if(dep_ui->early_close_date_flag->isChecked())
     {
         Date d(dep_win->ui->early_close_date->date());
-        if(valid_close_date = d.validMe())
-        {
+        valid_close_date = d.validMe();
+        if(valid_close_date)
             dep->setCloseDate(d);
-            dep->setDayCount();
-        }
+        validAllConditions();
     }
-    valid_close_date = valid_close_date && dep->validDate();
-    validAllConditions();
 
 }
 
 void Controller::calculate()
 {
+
     results[currentResult] = dep->getProfit();
     results_field_free[currentResult] = false;
     switch (currentResult) {
@@ -239,7 +241,7 @@ void Controller::calculate()
     default:
         break;
     }
-    /*main_win->ui->d_result_1->setPalette(DEFAULT);
+    main_win->ui->d_result_1->setPalette(DEFAULT);
     main_win->ui->d_result_2->setPalette(DEFAULT);
     main_win->ui->d_result_3->setPalette(DEFAULT);
     ProfitResult max;
@@ -268,16 +270,18 @@ void Controller::calculate()
     case 3:
         main_win->ui->d_result_1->setPalette(MAX);
         break;
-    }*/
+    }
     dep_win->close();
 }
 
 inline void Controller::validAllConditions()
 {
 
-    bool b = valid_start_sum && valid_open_date && valid_days_count  && valid_close_date;
+    bool b = valid_start_sum && valid_open_date && valid_days_count;
     if(dep_ui->supplement_flag->isChecked())
         b = b && valid_supplement_sum;
+    if(dep_ui->early_close_date_flag->isChecked())
+        b = b && valid_close_date;
     dep_win->ui->do_calc_button->setEnabled(b);
 
 }
