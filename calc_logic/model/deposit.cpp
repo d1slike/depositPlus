@@ -3,7 +3,7 @@ ProfitResult Deposit::getProfit()
 {
     Money profit=calc();
     double rates =templ.getRates().get(start_sum, day_count, capitalization);
-    ProfitResult result(open_date,start_sum.getValue()+profit.getValue(),profit.getValue(),rates,(templ.getRates().get(start_sum, day_count, capitalization)));
+    ProfitResult result(templ.getName(), open_date,start_sum.getValue()+profit.getValue(),profit.getValue(),rates,(templ.getRates().get(start_sum, day_count, capitalization)));
     return result;
 }
 Money Deposit::calc() // в if добавить ништяков для обработки всего периодов и тд

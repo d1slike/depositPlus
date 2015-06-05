@@ -10,6 +10,7 @@ Controller::Controller(MainWindow* main, DepositHolder* holder)
     this->holder = holder;
     dep = 0;
     dep_win = 0;
+    cur_row = 0;
     blocked = false;
     //DEFAULT = main_ui->d_result_1->palette();
     //MAX = DEFAULT;
@@ -18,17 +19,18 @@ Controller::Controller(MainWindow* main, DepositHolder* holder)
       //  results_field_free[i] = true;
     currentResult = -1;
     valid_start_sum = valid_open_date = valid_days_count = valid_supplement_sum = valid_close_date = false;
-    connect(main_ui->add_1, SIGNAL(pressed()), this, SLOT(_1AddButtonAction()));
+    connect(main_ui->add, SIGNAL(clicked(bool)), this, SLOT(newDepositCalculate()));
+    /*connect(main_ui->add_1, SIGNAL(pressed()), this, SLOT(_1AddButtonAction()));
     connect(main_ui->add_2, SIGNAL(pressed()), this, SLOT(_2AddButtonAction()));
     connect(main_ui->add_3, SIGNAL(pressed()), this, SLOT(_3AddButtonAction()));
 
     connect(main_ui->clear_1, SIGNAL(pressed()), this, SLOT(_1ClearButtonAction()));
     connect(main_ui->clear_2, SIGNAL(pressed()), this, SLOT(_2ClearButtonAction()));
-    connect(main_ui->clear_3, SIGNAL(pressed()), this, SLOT(_3ClearButtonAction()));
+    connect(main_ui->clear_3, SIGNAL(pressed()), this, SLOT(_3ClearButtonAction()));*/
 
 }
 
-void Controller::_1AddButtonAction()
+/*void Controller::_1AddButtonAction()
 {
     if(blocked)
         return;
@@ -82,7 +84,7 @@ void Controller::_3ClearButtonAction()
     main_ui->clear_3->setEnabled(false);
     main_ui->d_result_3->setPlainText("");
     main_ui->d_result_3->setEnabled(false);
-}
+}*/
 
 
 void Controller::newDepositCalculate()
@@ -121,6 +123,7 @@ void Controller::newDepositCalculate()
 
     dep_ui->open_date->setDate(QDate::currentDate());
     dep_ui->early_close_date->setDate(QDate::currentDate());
+
 
     blocked = true;
     dep_win->show();
@@ -241,10 +244,17 @@ void Controller::validEarlyCloseDate()
 
 void Controller::calculate()
 {
+    list.append(dep->getProfit());
+    cur_row = main_ui->table->rowCount();
+    main_ui->table->setRowCount(cur_row + 1);
+    main_ui->table->setItem(cur_row, 0, &(list[cur_row].dep_name));
+    main_ui->table->setItem(cur_row, 1, &(list[cur_row].close_date));
+    main_ui->table->setItem(cur_row, 2, &(list[cur_row].rate));
+    main_ui->table->setItem(cur_row, 3, &(list[cur_row].sum));
+    main_ui->table->setItem(cur_row, 4, &(list[cur_row].profit));
 
-    ProfitResult pr = dep->getProfit();
     //results_field_free[currentResult] = false;
-    switch (currentResult) {
+    /*switch (currentResult) {
     case 0:
         main_ui->d_result_1->setEnabled(true);
         main_ui->add_1->setEnabled(false);
@@ -265,7 +275,7 @@ void Controller::calculate()
         break;
     default:
         break;
-    }
+    }*/
     /*main_ui->d_result_1->setPalette(DEFAULT);
     main_ui->d_result_2->setPalette(DEFAULT);
     main_ui->d_result_3->setPalette(DEFAULT);
