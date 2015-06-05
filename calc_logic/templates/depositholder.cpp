@@ -3,14 +3,17 @@
 #include <stdio.h>
 
 using namespace std ;
-using namespace best_rates;
 DepositHolder::DepositHolder()
 {
-
+    FILE* file = fopen("data.dat", "r");
+    int count=0;
+    while(!feof(file))
+    {
         QString name;
-        count = 1;
-        for(int i = 0; i < 10; i++)
-            name[i] = NAME_vig[i];
+        char str[10];
+        fscanf(file,"%s",str);
+        for(int i = 0; i < strlen(str); i++)
+                    name[i] = str[i];
         Array<RateSet, 3> rub_rates;
         Array<RateSet, 3> usd_rates;
         Array<RateSet, 3> eur_rates;
@@ -20,12 +23,12 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            sum=SUM_RUB[i];
-            for(int j = 0,k=0; j < 6; j++,k+=2)
+            fscanf(file,"%d",&sum);
+            for(int j=0;j<6;j++)
+                fscanf(file,"%d",&section_day[j]);
+            for(int j = 0; j < 6; j++)
             {
-                section_day[j]=DAY_COUNT[j];
-                base_rates[j]=RATES_RUB_vig[(i+1)*k];
-                effective_rates[j]=RATES_RUB_vig[(i+1)*k+1];
+                fscanf(file,"%lf%lf",&base_rates[j],&effective_rates[j]);
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             rub_rates[i] = tmp;
@@ -36,12 +39,12 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            sum=SUM_INTER[i];
-            for(int j = 0,k=0; j < 6; j++,k+=2)
+            fscanf(file,"%d",&sum);
+            for(int j=0;j<6;j++)
+                fscanf(file,"%d",&section_day[j]);
+            for(int j = 0; j < 6; j++)
             {
-                section_day[j]=DAY_COUNT[j];
-                base_rates[j]=RATES_USD_vig[(i+1)*k];
-                effective_rates[j]=RATES_USD_vig[(i+1)*k+1];
+                fscanf(file,"%lf%lf",&base_rates[j],&effective_rates[j]);
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             usd_rates[i] = tmp;
@@ -52,12 +55,12 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            sum=SUM_INTER[i];
-            for(int j = 0,k=0; j < 6; j++,k+=2)
+            fscanf(file,"%d",&sum);
+            for(int j=0;j<6;j++)
+                fscanf(file,"%d",&section_day[j]);
+            for(int j = 0; j < 6; j++)
             {
-                section_day[j]=DAY_COUNT[j];
-                base_rates[j]=RATES_EUR_vig[(i+1)*k];
-                effective_rates[j]=RATES_EUR_vig[(i+1)*k+1];
+                fscanf(file,"%lf%lf",&base_rates[j],&effective_rates[j]);
             }
             RateSet tmp(sum, 6, section_day, base_rates, effective_rates);
             eur_rates[i] = tmp;
@@ -65,14 +68,23 @@ DepositHolder::DepositHolder()
 
         RatesMatrix matrix(rub_rates, usd_rates, eur_rates);
 
-        bool can_capitalize; //капитализация процентов
-        bool can_add; //можно добавлять
-        bool can_remove; //можно досрочно снимать
-        bool dynam_rates;//градация по ставкам
-        can_capitalize=true;
-        can_add=true;
-        can_remove=true;
-        dynam_rates=false;
+        bool can_capitalize=false; //капитализация процентов
+        bool can_add=false; //можно добавлять
+        bool can_remove=false; //можно досрочно снимать
+        bool dynam_rates=false;//градация по ставкам
+        int d;
+        fscanf(file,"%d",&d);
+        if(d)
+            can_capitalize=true;
+        fscanf(file,"%d",&d);
+        if(d)
+            can_add=true;
+        fscanf(file,"%d",&d);
+        if(d)
+            can_remove=true;
+        fscanf(file,"%d",&d);
+        if(d)
+            dynam_rates=false;
 
         DepositTemplate tmp;
         tmp.setName(name);
@@ -83,10 +95,11 @@ DepositHolder::DepositHolder()
         tmp.setDynamRates(dynam_rates);
 
 
-        all[0] = tmp;
-        names[0] = tmp.getName();
+        all[count] = tmp;
+        names[count] = tmp.getName();
+        count++;
 
-
+}
 
     /*ifstream file("data.dat", ios::in | ios::binary);
     if(!file)
