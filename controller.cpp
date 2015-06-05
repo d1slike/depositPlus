@@ -311,6 +311,11 @@ void Controller::validAllConditions()
 void Controller::enableAll(bool isTemp)
 {
 
+    dep_ui->day_count_label->setEnabled(isTemp);
+    dep_ui->label_start_sum->setEnabled(isTemp);
+    dep_ui->early_close_date_label->setEnabled(isTemp);
+    dep_ui->open_date_label->setEnabled(isTemp);
+    dep_ui->valute_list_label->setEnabled(isTemp);
     dep_ui->day_count->setEnabled(isTemp);
     dep_ui->capitalisation_flag->setEnabled(isTemp ? dep->getTempl().isCanCapitalize() : isTemp);
     dep_ui->valute_list->setEnabled(isTemp);

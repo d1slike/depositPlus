@@ -2,7 +2,6 @@
 #define CONTROLLER_H
 
 #include <QObject>
-#include <QPalette>
 #include "calc_logic/templates/depositholder.h"
 #include "calc_logic/model/deposit.h"
 #include "calc_logic/model/profitresult.h"

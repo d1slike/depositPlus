@@ -77,10 +77,10 @@
     <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>11</x>
-       <y>21</y>
-       <width>646</width>
-       <height>275</height>
+       <x>12</x>
+       <y>22</y>
+       <width>640</width>
+       <height>277</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -96,7 +96,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>50</width>
+            <width>60</width>
             <height>20</height>
            </size>
           </property>
@@ -115,6 +115,9 @@
          <widget class="QComboBox" name="deposit_list">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Список доступных вкладов&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="editable">
            <bool>false</bool>
@@ -152,21 +155,24 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="valute_list_label">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>70</horstretch>
+            <horstretch>60</horstretch>
             <verstretch>20</verstretch>
            </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
-            <width>70</width>
+            <width>60</width>
             <height>20</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>70</width>
+            <width>60</width>
             <height>20</height>
            </size>
           </property>
@@ -182,6 +188,9 @@
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Список доступных валют&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -204,6 +213,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_start_sum">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>120</horstretch>
@@ -212,18 +224,18 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>120</width>
+            <width>130</width>
             <height>20</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>120</width>
+            <width>130</width>
             <height>20</height>
            </size>
           </property>
           <property name="text">
-           <string>Начальная сумма</string>
+           <string>Начальная сумма:</string>
           </property>
          </widget>
         </item>
@@ -249,6 +261,12 @@
             <width>150</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Сумма на момент открытия вклада&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="statusTip">
+           <string/>
           </property>
          </widget>
         </item>
@@ -309,8 +327,29 @@
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QLabel" name="open_date_label">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>130</horstretch>
+            <verstretch>20</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>130</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Дата открытия</string>
+           <string>Дата открытия:</string>
           </property>
          </widget>
         </item>
@@ -336,6 +375,9 @@
             <width>109</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Дата открытия вклада&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -393,97 +435,85 @@
        </layout>
       </item>
       <item>
-       <widget class="QSplitter" name="splitter">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <widget class="QLabel" name="day_count_label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>150</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Количество дней</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="day_count">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>25</height>
-          </size>
-         </property>
-        </widget>
-        <widget class="QLabel" name="min_day_count">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>250</width>
-           <height>25</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>*</string>
-         </property>
-        </widget>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QCheckBox" name="supplement_flag">
+         <widget class="QLabel" name="day_count_label">
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>120</horstretch>
+            <verstretch>20</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>130</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Ежемесячное пополнение</string>
+           <string>Количество дней:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="supplement_sum_label">
+         <widget class="QLineEdit" name="day_count">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Срок вклада в днях&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="min_day_count">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>250</horstretch>
+            <verstretch>20</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>250</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="text">
-           <string>Сумма</string>
+           <string>*</string>
           </property>
          </widget>
         </item>
@@ -500,6 +530,58 @@
           </property>
          </spacer>
         </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QCheckBox" name="supplement_flag">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Дополнительные взносы&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="text">
+           <string>Ежемесячное пополнение</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="supplement_sum_label">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>50</horstretch>
+            <verstretch>20</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Сумма:</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLineEdit" name="supplement_sum">
           <property name="enabled">
@@ -510,6 +592,9 @@
             <horstretch>200</horstretch>
             <verstretch>25</verstretch>
            </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Сумма ежемесячных взносов&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -535,6 +620,9 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Досрочное закрытие вклада&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
            <string>Досрочное снятие</string>
           </property>
@@ -549,8 +637,11 @@
         </item>
         <item>
          <widget class="QLabel" name="early_close_date_label">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
-           <string>Дата досрочного снятия</string>
+           <string>Дата досрочного снятия:</string>
           </property>
          </widget>
         </item>
@@ -564,6 +655,9 @@
             <horstretch>109</horstretch>
             <verstretch>25</verstretch>
            </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Дата досрочного закрытия&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -586,6 +680,9 @@
        <widget class="QCheckBox" name="capitalisation_flag">
         <property name="enabled">
          <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Ежемесячная капитализация процентов &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>Капитализация</string>
