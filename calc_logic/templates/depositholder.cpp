@@ -100,7 +100,7 @@ DepositHolder::DepositHolder()
         count++;
 
 }
-
+fclose(file);
     /*ifstream file("data.dat", ios::in | ios::binary);
     if(!file)
         return;
