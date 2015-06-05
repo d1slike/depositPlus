@@ -134,6 +134,16 @@ public:
         return templ;
     }
 
+    const m_long getCurrentMinSum()
+    {
+        return templ.getRates().getMinSum(start_sum.getValute());
+    }
+
+    const int getCurrentMinDays()
+    {
+        return templ.getRates().getMinDay(start_sum);
+    }
+
 };
 
 #endif

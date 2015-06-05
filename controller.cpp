@@ -91,12 +91,17 @@ void Controller::newDepositCalculate()
     dep_win = new DepositForm(main_win);
     valid_close_date = valid_days_count = valid_open_date = valid_start_sum = valid_supplement_sum = false;
 
+
+
     dep_ui->deposit_list->addItem("Выберите вклад");
+
     for(int i = 0; i < holder->getCount(); i++)
         dep_ui->deposit_list->addItem(holder->getName(i));
     dep_ui->deposit_list->setCurrentIndex(0);
 
+
     dep_ui->wrong_data->setText(constants::NOT_SUIT_DATE);
+
     dep_ui->wrong_data->setVisible(false);
     dep_ui->min_day_count->setVisible(false);
     dep_ui->min_start_sum->setVisible(false);
@@ -106,7 +111,7 @@ void Controller::newDepositCalculate()
     connect(dep_ui->open_date, SIGNAL(dateChanged(QDate)), this, SLOT(validDateOpen()));
     connect(dep_ui->day_count, SIGNAL(textChanged(QString)), this, SLOT(validDaysCount()));
     connect(dep_ui->deposit_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setTemplate(int)));
-    connect(dep_ui->valute_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setValute()));
+    connect(dep_ui->valute_list, SIGNAL(currentIndexChanged(int)), this, SLOT(setValute(int)));
     connect(dep_ui->supplement_flag, SIGNAL(clicked(bool)), this, SLOT(setSupplementationFlag()));
     connect(dep_ui->supplement_sum, SIGNAL(textChanged(QString)), this, SLOT(validSupplementSum()));
     connect(dep_ui->capitalisation_flag, SIGNAL(clicked(bool)), this, SLOT(setCapitalisationFlag()));
@@ -115,7 +120,6 @@ void Controller::newDepositCalculate()
     connect(dep_ui->do_calc_button, SIGNAL(pressed()), this, SLOT(calculate()));
 
     blocked = true;
-    dep_ui->valute_list->currentIndexChanged(0);
     dep_win->show();
 
 }
@@ -146,9 +150,9 @@ void Controller::setSupplementationFlag()
     dep->setSupplementation(b);
 }
 
-void Controller::setValute()
+void Controller::setValute(int index)
 {
-    switch(dep_ui->valute_list->currentIndex())
+    switch(index)
     {
     case 0:
         dep->getStartSum().setValute(RUB);
@@ -164,18 +168,20 @@ void Controller::setValute()
         break;
     }
     resetMinimalConditions();
-    validStartSum();
+    //validStartSum();
 }
 
 void Controller::setTemplate(int index)
 {
-    bool isTemp = index > -1;
+    bool isTemp = index > 0;
 
     if(isTemp)
     {
-        dep->setTemplate(holder->getTempl(index));
-        resetMinimalConditions();
+        dep->setTemplate(holder->getTempl(index - 1));
+        //resetMinimalConditions();
+        dep_ui->valute_list->currentIndexChanged(0);
     }
+
     enableAll(isTemp);
 }
 
@@ -316,7 +322,7 @@ void Controller::enableAll(bool isTemp)
 
 void Controller::resetMinimalConditions()
 {
-    dep_ui->min_start_sum->setText(constants::NOT_SUIT_SUM.arg(QString::number(dep->getTempl().getRates().getMinSum(dep->getStartSum().getValute()))));//
-    dep_ui->min_day_count->setText(constants::NOT_SUIT_DAY.arg(QString::number(dep->getTempl().getRates().getMinDay(dep->getStartSum()))));// TODO это провал
+    dep_ui->min_start_sum->setText(constants::NOT_SUIT_SUM.arg(QString::number(dep->getCurrentMinSum())));
+    dep_ui->min_day_count->setText(constants::NOT_SUIT_DAY.arg(QString::number(dep->getCurrentMinDays())));
 
 }

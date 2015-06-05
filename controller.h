@@ -13,9 +13,9 @@
 #include "ui_mainwindow.h"
 
 namespace constants {
-    static const QString NOT_SUIT_SUM = "* минимальная сумма %1";
-    static const QString NOT_SUIT_DAY = "* минимальное количество дней %1";
-    static const QString NOT_SUIT_DATE ="* неверный формат";
+    static const QString NOT_SUIT_SUM = "<html><head/><body><p><span style=\"font-size:7pt; font-style:italic; color:#ff0000;\">* минимальная сумма : %1</span></p></body></html>";
+    static const QString NOT_SUIT_DAY = "<html><head/><body><p><span style=\"font-size:7pt; font-style:italic; color:#ff0000;\">* мин. количество дней : %1</span></p></body></html>";
+    static const QString NOT_SUIT_DATE ="<html><head/><body><p><span style=\"font-size:7pt; font-style:italic; color:#ff0000;\">* неверная дата</span></p></body></html>";
 }
 
 class Controller : QObject
@@ -68,7 +68,7 @@ private slots:
     void setEarlyClosingDateFlag();
     void setCapitalisationFlag();
     void setSupplementationFlag();
-    void setValute();
+    void setValute(int);
     void setTemplate(int);
 
     void validStartSum();
