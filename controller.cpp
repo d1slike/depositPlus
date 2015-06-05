@@ -95,7 +95,7 @@ void Controller::newDepositCalculate()
 
     dep_ui->deposit_list->addItem("Выберите вклад");
 
-    for(int i = 0; i < holder->getCount(); i++)
+    for(int i = 0; i < holder->getCurCount(); i++)
         dep_ui->deposit_list->addItem(holder->getName(i));
     dep_ui->deposit_list->setCurrentIndex(0);
 
@@ -118,6 +118,9 @@ void Controller::newDepositCalculate()
     connect(dep_ui->early_close_date, SIGNAL(dateChanged(QDate)), this, SLOT(validEarlyCloseDate()));
     connect(dep_ui->early_close_date_flag, SIGNAL(clicked(bool)), this, SLOT(setEarlyClosingDateFlag()));
     connect(dep_ui->do_calc_button, SIGNAL(pressed()), this, SLOT(calculate()));
+
+    dep_ui->open_date->setDate(QDate::currentDate());
+    dep_ui->early_close_date->setDate(QDate::currentDate());
 
     blocked = true;
     dep_win->show();

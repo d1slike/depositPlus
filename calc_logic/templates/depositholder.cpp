@@ -6,7 +6,10 @@ using namespace std ;
 DepositHolder::DepositHolder()
 {
     FILE* file = fopen("data.dat", "r");
-    int count=0;
+    //int count=0;
+    count = 0;
+    if(file == NULL)
+        return;
     while(!feof(file))
     {
         QString name;
@@ -95,20 +98,8 @@ DepositHolder::DepositHolder()
         tmp.setDynamRates(dynam_rates);
 
 
-        all[count] = tmp;
-        names[count] = tmp.getName();
+        pool.append(tmp);
         count++;
-
-}
-fclose(file);
-    /*ifstream file("data.dat", ios::in | ios::binary);
-    if(!file)
-        return;
-    DepositTemplate *tmp = 0;
-    while(file.eof())
-    {
-        file.
-        all.insert(std::pair<QString, DepositTemplate>(tmp->getName(), *tmp));
-        list.append(tmp->getName());
-    }*/
+    }
+    fclose(file);
 }

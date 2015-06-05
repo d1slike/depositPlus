@@ -13,7 +13,7 @@ class ProfitResult
     m_long sum; //сумма в день закрытия вклада
     m_long profit; // прибыль
     double rates_low;// нижний %
-    double rates_up=0;// верхний % по умолчанию 0
+    double rates_up;// верхний % по умолчанию 0
 
 
 public:

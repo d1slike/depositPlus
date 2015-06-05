@@ -6,23 +6,23 @@
 
 class DepositHolder
 {
-    Array<DepositTemplate, 10> all;
-    Array<QString, 10> names;
+    QList<DepositTemplate> pool;
     int count;
+
 public:
-    DepositHolder();//TODO реализовать загрузку из dat
+    DepositHolder();
     DepositTemplate getTempl(int pos){
-            return all[pos];
+            return pool[pos];
     }
 
-    int getCount()
+    int getCurCount()
     {
         return count;
     }
 
-    QString& getName(int pos)
+    QString getName(int pos)
     {
-        return names[pos];
+        return pool[pos].getName();
     }
 
 };
