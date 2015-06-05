@@ -23,7 +23,7 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            fscanf(file,"%d",&sum);
+            fscanf(file,"%ld",&sum);
             for(int j=0;j<6;j++)
                 fscanf(file,"%d",&section_day[j]);
             for(int j = 0; j < 6; j++)
@@ -39,7 +39,7 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            fscanf(file,"%d",&sum);
+            fscanf(file,"%ld",&sum);
             for(int j=0;j<6;j++)
                 fscanf(file,"%d",&section_day[j]);
             for(int j = 0; j < 6; j++)
@@ -55,7 +55,7 @@ DepositHolder::DepositHolder()
             Array<double, R_SIZE> base_rates;//номинальные проценты
             Array<double, R_SIZE> effective_rates;//проценты с капитализацией
             m_long sum = 0;
-            fscanf(file,"%d",&sum);
+            fscanf(file,"%ld",&sum);
             for(int j=0;j<6;j++)
                 fscanf(file,"%d",&section_day[j]);
             for(int j = 0; j < 6; j++)
