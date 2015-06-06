@@ -48,7 +48,7 @@
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Paper_plane_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Paper_plane_16.png</iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2013_64bit-Release/Paper_plane_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2013_64bit-Release/Paper_plane_16.png</iconset>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -544,7 +544,7 @@
            <bool>false</bool>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Дополнительные взносы&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Дополнительные взносы&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
            <string>Ежемесячное пополнение</string>
@@ -625,7 +625,7 @@
            <bool>false</bool>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Досрочное закрытие вклада&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Досрочное закрытие вклада&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
            <string>Досрочное снятие</string>
@@ -686,7 +686,7 @@
          <bool>false</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Ежемесячная капитализация процентов &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-style:italic;&quot;&gt;Ежемесячная капитализация процентов &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;(зависит от вклада)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>Капитализация</string>

@@ -18,7 +18,7 @@ struct ProfitResult
 
     ProfitResult(){}
     //ProfitResult(Date& close_date, m_long sum, m_long profit);
-    ProfitResult(QString& name, Date& close_date, m_long sum, m_long profit,double rates_low ,double rates_up);
+    ProfitResult(QString& name, Date& close_date,Valute v , m_long sum, m_long profit,double rates_low ,double rates_up);
     //bool operator >(ProfitResult& tmp);
     //QString toString(); //вывод на интерфейс
 
