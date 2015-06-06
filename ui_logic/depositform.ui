@@ -46,6 +46,10 @@
    <property name="text">
     <string>Рассчитать</string>
    </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Paper_plane_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Paper_plane_16.png</iconset>
+   </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
@@ -74,7 +78,7 @@
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>12</x>

@@ -38,7 +38,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -170,6 +170,10 @@
          <property name="text">
           <string>Добавить</string>
          </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Add_circular_button_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Add_circular_button_16.png</iconset>
+         </property>
         </widget>
        </item>
        <item>
@@ -189,6 +193,10 @@
         <widget class="QPushButton" name="delete_2">
          <property name="text">
           <string>Удалить</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Close_circular_button_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Close_circular_button_16.png</iconset>
          </property>
         </widget>
        </item>
@@ -224,16 +232,16 @@
     <property name="title">
      <string>Вклады</string>
     </property>
-    <addaction name="action_2"/>
-    <addaction name="action_4"/>
-    <addaction name="action_5"/>
+    <addaction name="action_add"/>
+    <addaction name="action_del"/>
+    <addaction name="action_del_all"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>О программе</string>
     </property>
-    <addaction name="action_6"/>
-    <addaction name="action_7"/>
+    <addaction name="about"/>
+    <addaction name="team"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -246,27 +254,47 @@
     <string/>
    </property>
   </action>
-  <action name="action_2">
+  <action name="action_add">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Add_circular_button_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Add_circular_button_16.png</iconset>
+   </property>
    <property name="text">
     <string>Добавить</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="action_del">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Close_circular_button_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Close_circular_button_16.png</iconset>
+   </property>
    <property name="text">
     <string>Удалить</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="action_del_all">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Recycling_bin_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Recycling_bin_16.png</iconset>
+   </property>
    <property name="text">
     <string>Удалить все</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="about">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Lightbulb_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Lightbulb_16.png</iconset>
+   </property>
    <property name="text">
     <string>Версия</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="team">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Holding_hands_in_a_circle_16.png</normaloff>../../build-DepositPlus-Desktop_Qt_5_4_1_MSVC2012_OpenGL_32bit-Debug/Holding_hands_in_a_circle_16.png</iconset>
+   </property>
    <property name="text">
     <string>Об авторах</string>
    </property>

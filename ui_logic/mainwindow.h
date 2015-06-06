@@ -17,6 +17,8 @@ public:
 
 public:
     Ui::MainWindow *ui;
+private slots:
+    void on_delete_2_clicked();
 };
 
 #endif // MAINWINDOW_H

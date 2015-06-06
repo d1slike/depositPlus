@@ -1,5 +1,6 @@
 #include "controller.h"
 #include <QDate>
+#include <QMessageBox>
 
 #define dep_ui dep_win->ui
 #define main_ui main_win->ui
@@ -12,83 +13,54 @@ Controller::Controller(MainWindow* main, DepositHolder* holder)
     dep_win = 0;
     cur_row = 0;
     blocked = false;
-    //DEFAULT = main_ui->d_result_1->palette();
-    //MAX = DEFAULT;
-    //MAX.setColor(QPalette::Window, QColor(255, 43, 43));
-    //for(int i = 0; i < 3; i++)
-      //  results_field_free[i] = true;
-    currentResult = -1;
+
     valid_start_sum = valid_open_date = valid_days_count = valid_supplement_sum = valid_close_date = false;
     connect(main_ui->add, SIGNAL(clicked(bool)), this, SLOT(newDepositCalculate()));
-    /*connect(main_ui->add_1, SIGNAL(pressed()), this, SLOT(_1AddButtonAction()));
-    connect(main_ui->add_2, SIGNAL(pressed()), this, SLOT(_2AddButtonAction()));
-    connect(main_ui->add_3, SIGNAL(pressed()), this, SLOT(_3AddButtonAction()));
+    connect(main_ui->delete_2, SIGNAL(clicked(bool)), this, SLOT(cleanTable()));
 
-    connect(main_ui->clear_1, SIGNAL(pressed()), this, SLOT(_1ClearButtonAction()));
-    connect(main_ui->clear_2, SIGNAL(pressed()), this, SLOT(_2ClearButtonAction()));
-    connect(main_ui->clear_3, SIGNAL(pressed()), this, SLOT(_3ClearButtonAction()));*/
-
-}
-
-/*void Controller::_1AddButtonAction()
-{
-    if(blocked)
-        return;
-    currentResult = 0;
-    newDepositCalculate();
-}
-
-void Controller::_2AddButtonAction()
-{
-    if(blocked)
-        return;
-    currentResult = 1;
-
-    newDepositCalculate();
-}
-
-void Controller::_3AddButtonAction()
-{
-    if(blocked)
-        return;
-    currentResult = 2;
-    newDepositCalculate();
-}
-
-void Controller::_1ClearButtonAction()
-{
-    //results_field_free[currentResult] = true;
-    currentResult = -1;
-    main_ui->add_1->setEnabled(true);
-    main_ui->clear_1->setEnabled(false);
-    main_ui->d_result_1->setPlainText("");
-    main_ui->d_result_1->setEnabled(false);
+    connect(main_ui->action_add, SIGNAL(triggered(bool)), this, SLOT(newDepositCalculate()));
+    connect(main_ui->action_del, SIGNAL(triggered(bool)), this, SLOT(cleanTable()));
+    connect(main_ui->action_del_all, SIGNAL(triggered(bool)), this, SLOT(deleteAll()));
+    connect(main_ui->about, SIGNAL(triggered(bool)), this, SLOT(showAbout()));
+    connect(main_ui->team, SIGNAL(triggered(bool)), this, SLOT(showTeam()));
 
 }
 
-void Controller::_2ClearButtonAction()
+void Controller::cleanTable()
 {
-    //results_field_free[currentResult] = true;
-    currentResult = -1;
-    main_ui->add_2->setEnabled(true);
-    main_ui->clear_2->setEnabled(false);
-    main_ui->d_result_2->setPlainText("");
-    main_ui->d_result_2->setEnabled(false);
+   QList<QTableWidgetSelectionRange> list = main_ui->table->selectedRanges();
+   if(list.isEmpty())
+       main_ui->table->removeRow(0);
+   else
+   for(int i = 0; i < list.size(); i++)
+       for(int j = list[i].topRow(); j <= list[i].bottomRow(); j++)
+           main_ui->table->removeRow(j);
 }
 
-void Controller::_3ClearButtonAction()
+void Controller::deleteAll()
 {
-    //results_field_free[currentResult] = true;
-    currentResult = -1;
-    main_ui->add_3->setEnabled(true);
-    main_ui->clear_3->setEnabled(false);
-    main_ui->d_result_3->setPlainText("");
-    main_ui->d_result_3->setEnabled(false);
-}*/
+    main_ui->table->selectAll();
+    cleanTable();
+}
+
+void Controller::showAbout()
+{
+    QMessageBox::about(NULL, "О программе", "Калькулятор вкладов v0.5\n Исходный код доступен по https://github.com/d1slike/depositPlus");
+
+}
+
+void Controller::showTeam()
+{
+    QMessageBox::information(NULL, "Об авторах", "Комиссаров Я. В.(d1slike) \n Андрейцев О. (Shprechen)");
+}
+
 
 
 void Controller::newDepositCalculate()
 {
+    if(blocked)
+        return;
+
     dep = new Deposit;
     dep_win = new DepositForm(main_win);
     valid_close_date = valid_days_count = valid_open_date = valid_start_sum = valid_supplement_sum = false;
@@ -244,68 +216,16 @@ void Controller::validEarlyCloseDate()
 
 void Controller::calculate()
 {
-    list.append(dep->getProfit());
+    ProfitResult pr = dep->getProfit();
     cur_row = main_ui->table->rowCount();
     main_ui->table->setRowCount(cur_row + 1);
-    main_ui->table->setItem(cur_row, 0, &(list[cur_row].dep_name));
-    main_ui->table->setItem(cur_row, 1, &(list[cur_row].close_date));
-    main_ui->table->setItem(cur_row, 2, &(list[cur_row].rate));
-    main_ui->table->setItem(cur_row, 3, &(list[cur_row].sum));
-    main_ui->table->setItem(cur_row, 4, &(list[cur_row].profit));
+    main_ui->table->setItem(cur_row, 0, new QTableWidgetItem(pr.dep_name));
+    main_ui->table->setItem(cur_row, 1, new QTableWidgetItem(pr.close_date));
+    main_ui->table->setItem(cur_row, 2, new QTableWidgetItem(pr.rate));
+    main_ui->table->setItem(cur_row, 3, new QTableWidgetItem(pr.sum));
+    main_ui->table->setItem(cur_row, 4, new QTableWidgetItem(pr.profit));
 
-    //results_field_free[currentResult] = false;
-    /*switch (currentResult) {
-    case 0:
-        main_ui->d_result_1->setEnabled(true);
-        main_ui->add_1->setEnabled(false);
-        main_ui->clear_1->setEnabled(true);
-        main_ui->d_result_1->setPlainText(pr.toString());
-        break;
-    case 1:
-        main_ui->d_result_2->setEnabled(true);
-        main_ui->add_2->setEnabled(false);
-        main_ui->clear_2->setEnabled(true);
-        main_ui->d_result_2->setPlainText(pr.toString());
-        break;
-    case 2:
-        main_ui->d_result_3->setEnabled(true);
-        main_ui->add_3->setEnabled(false);
-        main_ui->clear_3->setEnabled(true);
-        main_ui->d_result_3->setPlainText(pr.toString());
-        break;
-    default:
-        break;
-    }*/
-    /*main_ui->d_result_1->setPalette(DEFAULT);
-    main_ui->d_result_2->setPalette(DEFAULT);
-    main_ui->d_result_3->setPalette(DEFAULT);
-    ProfitResult max;
-    for(int i = 0; i < 3; i++)
-    {
-        if(results_field_free[i])
-            continue;
-        else
-            max = results[i];
-    }
-    int max_field = 0;
-    for(int i = 0; i < 3; i++)
-        if(results[i] > max)
-        {
-            max = results[i];
-            max_field = i;
-        }
-    switch(max_field)
-    {
-    case 1:
-        main_ui->d_result_1->setPalette(MAX);
-        break;
-    case 2:
-        main_ui->d_result_1->setPalette(MAX);
-        break;
-    case 3:
-        main_ui->d_result_1->setPalette(MAX);
-        break;
-    }*/
+
     dep_win->close();
 }
 

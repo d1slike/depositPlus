@@ -7,23 +7,14 @@
 #include <QTableWidgetItem>
 
 
-class ProfitResult
+struct ProfitResult
 {
 
-    /*Date close_date; //дата закрытия вклада, если установлен влаг досрочного закрытия, то устанавливается соответствующая дата
-    m_long sum; //сумма в день закрытия вклада
-    m_long profit; // прибыль
-    double rates_low;// нижний %
-    double rates_up;// верхний % по умолчанию 0*/
-
-
-public:
-
-    QTableWidgetItem dep_name;
-    QTableWidgetItem close_date;
-    QTableWidgetItem sum;
-    QTableWidgetItem profit;
-    QTableWidgetItem rate;
+    QString dep_name;
+    QString close_date;
+    QString sum;
+    QString profit;
+    QString rate;
 
     ProfitResult(){}
     //ProfitResult(Date& close_date, m_long sum, m_long profit);

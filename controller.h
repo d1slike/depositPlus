@@ -27,12 +27,10 @@ class Controller : QObject
     DepositHolder* holder;
     DepositForm* dep_win;
     MainWindow* main_win;
-    QList<ProfitResult> list;
 
     int cur_row;
 
     bool blocked; //флаг запрета на открытие еще одной формы расчета вкладов
-    int currentResult; //тукущее поле заполнения
 
     bool valid_start_sum;
     bool valid_open_date;
@@ -51,13 +49,12 @@ public:
 
 
 private slots:
-    /*void _1AddButtonAction();//
-    void _2AddButtonAction();//
-    void _3AddButtonAction();//
 
-    void _1ClearButtonAction();//
-    void _2ClearButtonAction();//
-    void _3ClearButtonAction();// можно было обойтись двумя слотами*/
+    void cleanTable();
+    void deleteAll();
+
+    void showAbout();
+    void showTeam();
 
     void onClosingDepWindow();
     void newDepositCalculate();
