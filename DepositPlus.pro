@@ -39,3 +39,6 @@ HEADERS  += \
 FORMS    += \
     ui_logic/mainwindow.ui \
     ui_logic/depositform.ui
+
+RESOURCES += \
+    resource.qrc
